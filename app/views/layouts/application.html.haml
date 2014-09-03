@@ -1,0 +1,96 @@
+/
+  :plain
+     __  __ ___ _____ ___ ___ 
+    |  \/  |_ _|_   _| _ \ __|
+    | |\/| || |  | | |   / _| 
+    |_|  |_|___| |_| |_|_\___|
+
+!!!
+%html
+  %head
+    
+    - if @html_title
+      %title= @html_title
+    - elsif @title
+      %title= %[#{@game.name} : #{@title}]
+    - else
+      %title Scoreboard
+    
+    = stylesheet_link_tag "application"
+    = javascript_include_tag "application"
+    = csrf_meta_tags
+    
+    = yield :head
+    
+    -# mark tabs as active
+    - if @title
+      :javascript
+        $(document).ready(function() {
+          $("#nav-#{@title.downcase}").addClass("active");
+        });
+    
+    -# auto reload
+    - if @auto_reload
+      :javascript
+        $(document).ready(function() {
+          window.setInterval(function() {
+            window.location.reload();
+          }, 30000);
+        });
+    
+  %body
+    .navbar.navbar-fixed-top
+      .navbar-inner
+        .container
+          %ul.nav.pull-left
+            = link_to @game.name, root_path, :class => "brand"
+            - if current_user
+              %li#nav-challenges= link_to "Challenges", challenges_path
+              %li#nav-messages
+                %a{ href: messages_path }
+                  Messages
+                  - if @messages_count > 0
+                    %span.badge.badge-important= @messages_count
+            %li#nav-teams= link_to "Teams", players_path
+            %li#nav-achievements= link_to "Achievements", achievements_path
+            %li#nav-summary= link_to "Summary", "/summary"
+          
+          %ul.nav.pull-right
+            - if current_user
+              - if current_user.admin?
+                %li.dropdown
+                  %a.dropdown-toggle{ :href => "#", "data-toggle".to_sym => "dropdown" }
+                    Admin
+                    %b.caret
+                  %ul.dropdown-menu
+                    %li= link_to "Dashboard", "/admin"
+                    %li.divider
+                    %li= link_to "Post a new Message", rails_admin.new_path("message")
+                    %li= link_to "View Submitted Flags", rails_admin.index_path("submitted_flag")
+                    %li= link_to "Award an Achievement", rails_admin.new_path("achievement")
+                    %li= link_to "New score adjustment", rails_admin.new_path("score_adjustment")
+                    - if content_for?(:admin_menu)
+                      %li.divider
+                      = yield :admin_menu
+              - else
+                %li= link_to "My Team", current_user
+              %li.divider-vertical
+              %li= link_to "Log Out", "/signout"
+            - else
+              %li= link_to "Log In", "/signin"
+              
+    .container
+      - unless @title.blank?
+        %h1
+          = @title
+          %small= @subtitle
+          - if Time.now > @game.start && Time.now < @game.stop
+            = render partial: "games/countdown", locals: {endTime: @game.stop}
+
+      = render :partial => 'layouts/flash', :locals => { :flash => flash } unless current_user.nil?
+      = yield
+    
+    .container
+      %p{ :style => "text-align:center;margin-top:40px;" } MITRE Cyber Academy&trade;
+      / %p{ :style => "text-align:center;margin-bottom:40px 0;" } The MITRE Corporation
+        

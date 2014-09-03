@@ -1,0 +1,51 @@
+
+%div{id: "map"}
+
+:javascript
+	var players = #{data.to_json}
+
+:coffeescript
+	width =  document.getElementById("map").clientWidth
+	height = width/2
+
+	projection = d3.geo.albersUsa()
+		.scale(width)
+	    .translate([width / 2, height / 2]);
+
+	path = d3.geo.path()
+		.projection(projection);
+	svg = d3.select("#map").append("svg")
+		.attr("width", width)
+		.attr("height", height)
+
+	g = svg.append("g")
+		.attr("id", "states")
+
+	d3.json("/states.json", (json)->
+		g.selectAll("path")
+			.data(json.features)
+			.enter().append("path")
+				.attr("d",path)
+				.attr("class","state")
+		# Why is this in here? Because otherwise it can render the team locations prior to map and it looks funky.
+		svg.selectAll(".team")
+		.data(players)
+			.enter().append("path")
+			.attr("d", d3.svg.symbol().type((d)->
+				if d.tags?.indexOf("mitre") > 0
+					return "triangle-up"
+				else
+					return "circle"
+			)
+			.size(64))
+			.attr("id", (d)->(d.email))
+			.attr("transform", (d)->
+				translate = projection([d.longitude,d.latitude])
+				"translate(" +translate[0] + "," + translate[1] + ")"
+			)
+			.attr("tags", (d)->(d.tags))
+			.attr("class", (d) ->
+				("team_location " + d.tags)
+			)
+
+	)

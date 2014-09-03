@@ -1,0 +1,66 @@
+/ This is an ugly hack because of https://github.com/paulnicholson/coffee-filter#caveats
+:javascript
+	if(typeof(data) == "undefined"){
+		data = {}
+		style = {}
+		chartHeight = {}
+		chartWidth = {}
+		interpolate = {}
+		events = {}
+	}
+	id = "#{id}"
+	data[id] = #{data.to_json}
+	chartHeight[id] = #{height||=17}
+	chartWidth[id] = #{width||=940}
+	style[id] = "#{style||="timeline"}"
+	interpolate[id] = "#{interpolate||="cardinal-open"}"
+
+	margin = 17
+
+
+%div{:id=>"#{id}"}
+
+:coffeescript
+
+	axis = true
+	axis = false if chartHeight[id] < 100
+
+	chartWidth[id] = document.getElementById(id).parentElement.clientWidth
+	chart = d3.select("#"+id).append("svg")
+		.attr("class", style[id])
+		.attr("width", ()-> chartWidth[id]+"px")
+		.attr("height", ()-> chartHeight[id]+"px");
+
+	# Make some scales here
+	heightScale = d3.scale.linear()
+		.range([chartHeight[id], 0])
+		.domain([d3.max(data[id], (d) -> (d["count"])),0])
+
+	timeScale = d3.time.scale()
+		.range([0,chartWidth[id]])
+		.domain(d3.extent(data[id], (d) -> new Date(d["date"])))
+
+	area = d3.svg.area()
+		.interpolate(interpolate[id])
+		.x((d) -> (timeScale(new Date(d["date"]))))
+		.y0(chartHeight[id])
+		.y1((d) -> (heightScale(d["count"])))
+
+	xAxis = d3.svg.axis()
+		.scale(timeScale)
+		.orient("top")
+
+	
+	chart.append("path")
+		.datum(data[id].sort((a,b) -> (new Date(a["date"]) - new Date(b["date"]))))
+		.attr("class", "data")
+		.attr("d", area)
+	if axis
+		chart.append("g")
+			.attr("class", "x axis")
+			.attr("transform", "translate(0," + chartHeight[id] + ")")
+			.call(xAxis);
+
+	
+
+	

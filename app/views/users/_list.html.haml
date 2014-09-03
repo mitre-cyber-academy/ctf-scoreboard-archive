@@ -1,0 +1,27 @@
+- if players.count == 0
+  .zero-items-text No Teams
+- else
+  - max = 0
+  %table.table.table-bordered.table-striped
+    %thead
+      %tr
+        %th{ :style => "width:50px;" } #
+        %th Name
+        %th{ :style => "width:100px;" } Achievements
+        %th{ :style => "width:100px;" } Points
+        %th{ :style => "width:50%;" }
+    %tbody
+      - players.each_with_index do |p, i|
+      - score = p.score
+      - if score > max
+        - max = score
+      - percent = score.to_f / max.to_f * 100.0
+        %tr
+          %td= i + 1
+          %td{:class => "#{p.tags}"}
+            = link_to p.display_name, p
+          %td= p.achievements.count
+          %td= score
+          %td
+            .progress{ :style => "margin:0;" }
+              .bar{ :style => "width:#{percent}%;" }

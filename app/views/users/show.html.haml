@@ -1,0 +1,98 @@
+%div.row
+  %div.span5
+    %h3.muted Flags/Min:
+    = render partial: "events/timeline", locals: {id: "timeline", data: @submitted_flags}
+  %div.span5.offset1
+    %h3.muted 
+      -if current_user == @player
+        Connection Information
+      -else 
+        Affiliation:
+        %small 
+          =@player.affiliation
+%div.row
+  %div.span5
+    - if @solved_challenges.count == 0
+      .zero-items-text No Solved Challenges
+    - else
+      %table.table.table-bordered.table-striped
+        %thead
+          %tr
+            %th #
+            %th Category
+            %th Points
+            %th When
+        %tbody
+          - @solved_challenges.each_with_index do |s, i|
+            %tr
+              %td= i + 1
+              %td= s.challenge.category.name
+              %td= s.challenge.point_value
+              %td= s.created_at.strftime("%b %e %y, %R %Z")
+
+  
+  -if(current_user == @player)
+    %div.span5.offset1
+      :markdown 
+        To connect to the jumpbox from Kali download your key using the link below. Unzip the folder, open a terminal in that folder and run
+
+        `openvpn (ovpn file)`
+      -if @game.irc != ''
+        :markdown
+          If you need help please connect to our IRC channel at [#{@game.irc}](http://webchat.freenode.net/?channels=#{@game.irc[1..-1]})
+  -else
+    %div.span5.offset1
+      = render partial: "users/map", locals: {data: @players}
+  
+
+- if (not current_user.nil? and current_user.admin?) || current_user == @player
+  %h3 VPN Cert
+  %table.table.table-bordered.table-striped
+    %tbody
+      %tr
+        %td{ colspan: "4" }
+          %i.icon-plus
+          = link_to "Download Cert", download_player_path(@player)
+
+%h3 Achievements
+
+- if @achievements.count == 0
+  .zero-items-text No Achievements
+- else
+  %table.table.table-bordered.table-striped
+    %thead
+      %tr
+        %th Name
+        %th When
+    %tbody
+      - @achievements.each do |a|
+        %tr
+          %td= a.text
+          %td= a.updated_at.strftime("%b %e %y, %R %Z")
+
+- unless current_user.nil?
+  %h3 Score Adjustments
+  - if @adjustments.count == 0
+    .zero-items-text No Adjustments
+  - else
+    %table.table.table-bordered.table-striped
+      %thead
+        %tr
+          %th Points
+          %th When
+          %th Comments
+      %tbody
+        - @adjustments.each do |a|
+          %tr
+            - style = ""
+            - if a.point_value > 0
+              - style = "color:green;"
+            - elsif a.point_value < 0
+              - style = "color:red;"
+            %td{ style: style }
+              - if a.point_value > 0
+                = %[+#{a.point_value}]
+              - else
+                = a.point_value
+            %td= a.created_at.strftime("%b %e %y, %R %Z")
+            %td= a.text

@@ -1,0 +1,36 @@
+%div.row
+	%div.span5
+		%h3.muted Flags/Min:
+		= render partial: "events/timeline", locals: {id: "timeline", data: @submitted_flags}
+	%div.span5.offset1
+		%h3.muted 
+			Affiliation:
+			%small 
+				-if not @player.affiliation == ''
+					= @player.affiliation  
+				-else
+					Unknown
+					
+%div.row
+	%div.span5
+		- if @solved_challenges.count == 0
+			.zero-items-text No Solved Challenges
+		- else
+			%table.table.table-bordered.table-striped
+				%thead
+					%tr
+						%th #
+						%th Category
+						%th Points
+						%th When
+				%tbody
+					- @solved_challenges.each_with_index do |s, i|
+						%tr
+							%td= i + 1
+							%td= s.challenge.category.name
+							%td= s.challenge.point_value
+							%td= s.created_at.strftime("%b %e %y, %R %Z")
+
+	
+	%div.span5.offset1
+		= render partial: "users/map", locals: {data: @players}

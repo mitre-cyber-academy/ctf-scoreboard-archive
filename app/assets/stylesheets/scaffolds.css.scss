@@ -1,0 +1,36 @@
+body {
+  margin-top:75px;
+}
+
+h1 {
+  margin:0 0 40px 0;
+  border-bottom:1px solid #ddd;
+}
+
+.zero-items-text {
+  text-align:center;
+  font-weight:bold;
+  -webkit-border-radius:4px;
+  -moz-border-radius:4px;
+  border-radius:4px;
+  border:1px solid #DDD;
+  line-height:18px;
+  padding:8px;
+  margin-bottom:18px;
+}
+
+.alert-container *:last-child {
+  margin-bottom:40px;
+}
+
+.table {
+  margin-bottom:40px;
+}
+
+.table:last-child {
+  margin:0;
+}
+
+.pagination {
+  margin:0;
+}

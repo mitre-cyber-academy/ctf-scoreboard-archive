@@ -1,0 +1,34 @@
+- content_for :admin_menu do
+  %li= link_to %[Edit "#{@challenge.name}"], rails_admin.edit_path("challenge", @challenge.id)
+
+%div{ :style => "margin-bottom:40px;" }
+  - if @challenge.description.blank?
+    No description
+  - else
+    = raw(BlueCloth.new(@challenge.description).to_html)
+%h2 Solved By
+= render partial: "events/timeline", locals: {id: "timeline", data: @submitted_flags}
+
+- if !@solved
+  = form_for @challenge, url: submit_flag_challenge_path(@challenge), method: "post", html: { class: "well", style: "margin-bottom:40px;" } do |f|
+    .control-group
+      %p Submit Flag
+    .control-group
+      .controls
+        = f.text_field :submitted_flag, :class => "span5"
+    .control-group
+      = button_tag "Submit", :class => "btn btn-primary"
+
+- if @solved_by.count > 0
+  %table.table.table-bordered.table-striped
+    %thead
+      %tr
+        %th #
+        %th Team
+        %th When
+    %tbody
+      - @solved_by.each_with_index do |e, i|
+        %tr
+          %td= i + 1
+          %td= link_to e.player.display_name, e.player
+          %td= e.created_at.strftime("%b %e %y, %R %Z")

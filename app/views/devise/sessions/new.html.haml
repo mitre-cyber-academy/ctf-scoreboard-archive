@@ -1,0 +1,31 @@
+%h1
+  Sign In
+  %small &nbsp;
+
+= render :partial => 'layouts/flash', :locals => { :flash => flash }
+
+= form_for resource, :as => resource_name, :url => session_path(resource_name), :html => { :class => "well" } do |f|
+  
+  .control-group
+    = f.label :email, "Login", :class => "control-label"
+    .controls
+      = f.text_field :email, :class => "span5"
+  
+  .control-group
+    = f.label :password, :class => "control-label"
+    .controls
+      = f.password_field :password, :class => "span5"
+  
+  - if devise_mapping.rememberable?
+    .control-group
+      .controls
+        = f.check_box :remember_me
+      = f.label :remember_me
+      
+  .control-group
+    .controls
+      = button_tag "Sign in", :class => "btn btn-primary"
+      - unless @game.tos.nil?
+        &nbsp;
+        By logging in, you agree to our
+        = link_to("terms of service", tos_path) + "."

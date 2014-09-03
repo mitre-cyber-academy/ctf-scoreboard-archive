@@ -1,0 +1,15 @@
+- if @achievements.count == 0
+  .zero-items-text No Achievements
+- else
+  %table.table.table-bordered.table-striped
+    %thead
+      %tr
+        %th Name
+        %th Unlocked By
+        %th When
+    %tbody
+      - @achievements.each do |a|
+        %tr
+          %td= a.text
+          %td= link_to_unless current_user.nil?, a.player.display_name, a.player
+          %td= a.created_at.strftime("%b %e %y, %R %Z")

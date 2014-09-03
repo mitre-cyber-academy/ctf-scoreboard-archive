@@ -1,0 +1,17 @@
+= form_for key, url: { action: action } do |f|
+  
+  .control-group
+    = f.label :name, :class => "control-label"
+    .controls
+      = f.text_field :name, :class => "span10"
+  
+  .control-group
+    = f.label :key, :class => "control-label"
+    .controls
+      = f.text_area :key, :class => "span10", rows: "10", style: "resize:vertical;"
+  
+  .control-group
+    .controls
+      = link_to "Cancel", @player
+      = button_tag "Submit", :class => "btn btn-primary", style: "margin-left:5px;"
+      

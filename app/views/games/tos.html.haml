@@ -1,0 +1,4 @@
+- if @game.tos.blank?
+  %p This game has no terms of service.
+- else
+  = raw(BlueCloth.new(@game.tos).to_html)

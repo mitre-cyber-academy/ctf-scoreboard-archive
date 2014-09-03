@@ -1,0 +1,30 @@
+%h2 Top 5 Teams
+= render partial: "users/list", locals: { players: @top_players }
+
+%h2 Game Feed
+- if @events.count == 0
+  .zero-items-text No Events
+- else
+  %h4{:class=>"small muted"}
+    Flags/Min:
+  = render partial: "events/timeline", locals: {id: 'timeline', data: @submitted_flags}
+  %table.table.table-bordered.table-striped
+    %thead
+      %tr
+        %th
+        %th Team
+        %th Event
+        %th When
+    %tbody
+      - @events.each do |e|
+        %tr
+          %td{ :style => "text-align:center;width:20px;" }
+            %i{ :class => "icon-#{e.icon}" }
+          %td= link_to_unless current_user.nil?,  e.player.display_name, e.player
+          %td= raw(e.description)
+          %td= e.created_at.strftime("%b %e %y, %R %Z")
+
+= paginate @events
+
+
+  

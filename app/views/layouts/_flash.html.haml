@@ -1,0 +1,10 @@
+.alert-container
+  - flash.each do |key, value|
+    - type = key.to_s
+    - if ["error", "info", "success"].include?(type)
+      %div{ :class => "alert alert-#{type}" }= raw(value)
+    - else
+      %div{ :class => "alert" }= raw(value)
+  - if @errors
+    - @errors.full_messages.each do |m|
+      .alert.alert-error= "#{m}."
