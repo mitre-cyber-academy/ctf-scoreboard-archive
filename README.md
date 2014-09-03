@@ -7,11 +7,10 @@ This repository is for the scoreboard used to run MITRE capture the flag competi
 ### How to Run Locally
 
 1. Install ruby.
-3. In your terminal run `gem install bundle`
-4. Run `rbenv rehash`
-5. Run `bundle install`
-6. Run `bundle exec rails c`
-7. Open the webpage shown in your terminal from the last command in your browser.
+2. In your terminal run `gem install bundle`
+3. Run `bundle install`
+4. Run `bundle exec rails c`
+5. Open the webpage shown in your terminal from the last command in your browser.
 
 ### How do I contribute?
 
