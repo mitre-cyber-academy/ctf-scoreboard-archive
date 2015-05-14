@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 gem 'rails'
 gem 'bluecloth'
-gem 'aws-s3'
+gem 'aws-sdk', '<2.0'
 gem 'haml'
 gem 'rails_admin'
 gem 'devise'
