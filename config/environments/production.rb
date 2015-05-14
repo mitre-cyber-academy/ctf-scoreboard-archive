@@ -51,4 +51,7 @@ Scoreboard::Application.configure do
 
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
+  # when true, eager loads all registered config.eager_load_namespaces. 
+  # This includes your application, engines, Rails frameworks and any other registered namespace.
+  config.eager_load = true
 end
