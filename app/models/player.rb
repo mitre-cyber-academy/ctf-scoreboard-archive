@@ -10,7 +10,6 @@ class Player < User
   
   validates :game_id, :display_name, presence: true
   
-  attr_accessible :game_id, :tags, :display_name, :city, :affiliation
   geocoded_by :city
   after_validation :geocode, :if => :city_changed?
 
