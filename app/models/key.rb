@@ -1,6 +1,5 @@
 class Key < ActiveRecord::Base
   
-  attr_accessible :key, :name, :user_id
   belongs_to :player, foreign_key: :user_id
   validates :user_id, :key, :name, presence: true
   validate :validate_key_using_ssh_keygen
