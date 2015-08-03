@@ -37,7 +37,7 @@
         To connect to the jumpbox from Kali download your key using the link below. Unzip the folder, open a terminal in that folder and run
 
         `openvpn (ovpn file)`
-      -if @game.irc != ''
+      -if @game.irc?
         :markdown
           If you need help please connect to our IRC channel at [#{@game.irc}](http://webchat.freenode.net/?channels=#{@game.irc[1..-1]})
   -else

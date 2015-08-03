@@ -33,4 +33,12 @@ class UsersController < ApplicationController
     end
   end
 
+  private
+  def user_params 
+    params.require(:user).permit(:email, :password, :password_confirmation)
+  end
+  
+  def player_params
+    params.require(:player).permit(:game_id, :tags, :display_name, :city, :affiliation)
+  end
 end

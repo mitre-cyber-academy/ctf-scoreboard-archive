@@ -24,8 +24,8 @@ Scoreboard::Application.routes.draw do
       get 'download'
     end
   end
-  match "tos" => "games#tos"
-  match "summary" =>"games#summary"
+  get "tos" => "games#tos"
+  get "summary" =>"games#summary"
   
   # root
   root to: "games#show"
