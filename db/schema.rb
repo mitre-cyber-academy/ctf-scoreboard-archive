@@ -9,100 +9,101 @@
 # from scratch. The latter is a flawed and unsustainable approach (the more migrations
 # you'll amass, the slower it'll run and the greater likelihood for issues).
 #
-# It's strongly recommended to check this file into your version control system.
+# It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130628164632) do
+ActiveRecord::Schema.define(version: 20130628164632) do
 
-  create_table "categories", :force => true do |t|
+  create_table "categories", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.integer  "game_id"
   end
 
-  create_table "challenges", :force => true do |t|
+  create_table "challenges", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
     t.integer  "point_value"
     t.string   "flag"
     t.string   "state"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.integer  "category_id"
     t.string   "achievement_name"
   end
 
-  create_table "feed_items", :force => true do |t|
+  create_table "feed_items", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "type"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.integer  "challenge_id"
     t.string   "text"
     t.integer  "point_value"
   end
 
-  create_table "games", :force => true do |t|
+  create_table "games", force: :cascade do |t|
     t.string   "name"
     t.datetime "start"
     t.datetime "stop"
     t.text     "description"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.text     "tos"
     t.string   "irc"
   end
 
-  create_table "keys", :force => true do |t|
+  create_table "keys", force: :cascade do |t|
     t.string   "name"
     t.text     "key"
     t.integer  "user_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
-  create_table "messages", :force => true do |t|
+  create_table "messages", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "game_id"
     t.text     "text"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "title"
   end
 
-  create_table "rails_admin_histories", :force => true do |t|
+  create_table "rails_admin_histories", force: :cascade do |t|
     t.string   "message"
     t.string   "username"
     t.integer  "item"
     t.string   "table"
-    t.integer  "month",      :limit => 2
-    t.integer  "year",       :limit => 5
-    t.datetime "created_at",              :null => false
-    t.datetime "updated_at",              :null => false
+    t.integer  "month",      limit: 2
+    t.integer  "year",       limit: 5
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
-  add_index "rails_admin_histories", ["item", "table", "month", "year"], :name => "index_rails_admin_histories"
+  add_index "rails_admin_histories", ["item", "table", "month", "year"], name: "index_rails_admin_histories"
 
-  create_table "submitted_flags", :force => true do |t|
+  create_table "submitted_flags", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "challenge_id"
     t.string   "text"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
-  create_table "users", :force => true do |t|
-    t.string   "email",                                 :default => "", :null => false
-    t.string   "encrypted_password",     :limit => 128, :default => "", :null => false
-    t.integer  "sign_in_count",                         :default => 0
+  create_table "users", force: :cascade do |t|
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.integer  "sign_in_count",          default: 0
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.datetime "created_at",                                            :null => false
-    t.datetime "updated_at",                                            :null => false
-    t.integer  "failed_attempts",                       :default => 0
+    t.integer  "failed_attempts",        default: 0
+    t.string   "unlock_token"
     t.datetime "locked_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "type"
     t.integer  "game_id"
     t.datetime "messages_stamp"
@@ -115,6 +116,6 @@ ActiveRecord::Schema.define(:version => 20130628164632) do
     t.string   "affiliation"
   end
 
-  add_index "users", ["email"], :name => "index_users_on_email", :unique => true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true
 
 end
