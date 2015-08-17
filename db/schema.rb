@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130628164632) do
+ActiveRecord::Schema.define(version: 20150812232430) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -24,7 +24,6 @@ ActiveRecord::Schema.define(version: 20130628164632) do
     t.string   "name"
     t.text     "description"
     t.integer  "point_value"
-    t.string   "flag"
     t.string   "state"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -40,7 +39,21 @@ ActiveRecord::Schema.define(version: 20130628164632) do
     t.integer  "challenge_id"
     t.string   "text"
     t.integer  "point_value"
+    t.integer  "flag_id"
   end
+
+  add_index "feed_items", ["flag_id"], name: "index_feed_items_on_flag_id"
+
+  create_table "flags", force: :cascade do |t|
+    t.integer  "challenge_id"
+    t.string   "flag"
+    t.string   "api_request"
+    t.string   "video_url"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "flags", ["challenge_id"], name: "index_flags_on_challenge_id"
 
   create_table "games", force: :cascade do |t|
     t.string   "name"

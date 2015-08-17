@@ -31,9 +31,11 @@ class ChallengesController < ApplicationController
     end
     
     # handle flag
-    if @challenge.flag == flag
+    flag_found = @challenge.flags.select{|flag_obj| flag_obj.flag.eql? flag }.first
+
+    if flag_found
       if is_player
-        SolvedChallenge.create(player: current_user, challenge: @challenge)
+        SolvedChallenge.create(player: current_user, challenge: @challenge, flag: flag_found)
       end
       redirect_to @challenge, flash: { success: "Flag accepted!" }
     else

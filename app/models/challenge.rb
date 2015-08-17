@@ -1,8 +1,10 @@
 class Challenge < ActiveRecord::Base
   
   belongs_to :category
+
+  has_many :flags, :dependent => :destroy
   
-  validates :name, :point_value, :flag, :category_id, :state, presence: true
+  validates :name, :point_value, :flags, :category_id, :state, presence: true
   validates :state, inclusion: %w( open closed )
 
   default_scope -> { order(point_value: :asc, name: :asc) }
