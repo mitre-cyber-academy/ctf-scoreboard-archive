@@ -47,7 +47,7 @@ class SolvedChallenge < FeedItem
     challenge = self.challenge
     category = challenge.category
     challenge = category.next_challenge(challenge)
-    if challenge
+    if challenge && challenge.available?
       challenge.update_attribute(:state, "open")
     end
   end

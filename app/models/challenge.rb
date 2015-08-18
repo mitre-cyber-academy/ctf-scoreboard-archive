@@ -5,14 +5,14 @@ class Challenge < ActiveRecord::Base
   has_many :flags, :dependent => :destroy
   
   validates :name, :point_value, :flags, :category_id, :state, presence: true
-  validates :state, inclusion: %w( open closed )
+  validates :state, inclusion: %w( open closed force_closed )
 
   default_scope -> { order(point_value: :asc, name: :asc) }
   
   attr_accessor :submitted_flag
   
   def state_enum
-    ['open', 'closed']
+    ['open', 'closed', 'force_closed']
   end
   
   def open?
@@ -21,6 +21,11 @@ class Challenge < ActiveRecord::Base
   
   def is_solved?
     (SolvedChallenge.where("challenge_id = :challenge", challenge: self).count > 0)
+  end
+
+  # Returns whether or not challenge is available to be opened.
+  def available?
+    self.state.eql? "closed"
   end
 
   def get_current_solved_challenge(user)
