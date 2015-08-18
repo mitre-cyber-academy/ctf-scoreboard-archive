@@ -22,9 +22,24 @@ class Challenge < ActiveRecord::Base
   def is_solved?
     (SolvedChallenge.where("challenge_id = :challenge", challenge: self).count > 0)
   end
-  
+
+  def get_current_solved_challenge(user)
+    solved_challenge = SolvedChallenge.where("challenge_id = :challenge and user_id = :user", challenge: self, user: user)
+    solved_challenge.first unless solved_challenge.nil?
+  end
+ 
   def is_solved_by_user?(user)
-    (SolvedChallenge.where("challenge_id = :challenge and user_id = :user", challenge: self, user: user).count > 0)
+    !get_current_solved_challenge(user).nil?
+  end
+
+  def get_video_url_for_flag(user)
+    current_challenge = get_current_solved_challenge(user)
+    current_challenge.flag.video_url unless current_challenge.nil? || current_challenge.flag.nil?
+  end
+
+  def get_api_request_for_flag(user)
+    current_challenge = get_current_solved_challenge(user)
+    current_challenge.flag.api_request unless current_challenge.nil? || current_challenge.flag.nil?
   end
   
 end

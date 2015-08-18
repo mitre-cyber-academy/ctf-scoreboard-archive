@@ -6,6 +6,10 @@
     No description
   - else
     = raw(BlueCloth.new(@challenge.description).to_html)
+- if @solved_video_url
+  .embed-container
+    = embed(@solved_video_url)
+
 %h2 Solved By
 = render partial: "events/timeline", locals: {id: "timeline", data: @submitted_flags}
 
