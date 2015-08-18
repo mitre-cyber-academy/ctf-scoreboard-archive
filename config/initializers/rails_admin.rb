@@ -48,7 +48,7 @@ RailsAdmin.config do |config|
         label "Location"
       end
       exclude_fields :password, :password_confirmation
-      fields :display_name, :tags, :game, :city, :affiliation, :set_password
+      fields :display_name, :tags, :game, :city, :affiliation, :eligible, :set_password
     end
     list do
       fields :id, :display_name, :current_sign_in_at, :locked_at, :game

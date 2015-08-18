@@ -46,7 +46,16 @@ class Game < ActiveRecord::Base
   end
   
   def ordered_players
-    self.players.sort do |a, b|
+    eligible_players = filter_and_sort_players(eligible: true)
+    ineligible_players = filter_and_sort_players(eligible: false)
+    eligible_players.push(*ineligible_players)
+  end
+
+  private
+
+  # Sorts the provided list of players.
+  def filter_and_sort_players(filters)
+    self.players.where(filters).sort do |a, b|
       
       #
       # get scores
@@ -84,7 +93,6 @@ class Game < ActiveRecord::Base
       else
         b_score <=> a_score
       end
-      
     end
   end
   

@@ -16,6 +16,22 @@ class User < ActiveRecord::Base
   def admin?
     self.is_a?(Admin)
   end
+
+  def display_name
+    if self.eligible
+      return read_attribute(:display_name)
+    else
+      return read_attribute(:display_name) + " (ineligible)"
+    end
+  end
+
+  def set_password; nil; end
+
+  def set_password=(value)
+    return nil if value.blank?
+    self.password = value
+    self.password_confirmation = value
+  end
   
   
   private
