@@ -37,7 +37,7 @@ class ChallengesController < ApplicationController
     end
     
     # handle flag
-    flag_found = @challenge.flags.select{|flag_obj| flag_obj.flag.eql? flag }.first
+    flag_found = @challenge.flags.select{|flag_obj| flag_obj.flag.downcase.eql? flag.downcase }.first
 
     if flag_found
 
