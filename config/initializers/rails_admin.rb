@@ -5,7 +5,7 @@ RailsAdmin.config do |config|
   config.label_methods << :email
   
   config.authorize_with do
-    redirect_to root_path unless current_user.admin?
+    redirect_to main_app.root_path unless current_user.try(:admin?)
   end
   
   config.model User do
