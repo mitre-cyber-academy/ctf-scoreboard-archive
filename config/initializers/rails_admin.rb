@@ -39,6 +39,7 @@ RailsAdmin.config do |config|
   end
   
   config.model Player do
+    configure :set_password
     edit do
       field :email do
         label "Login"
@@ -46,7 +47,8 @@ RailsAdmin.config do |config|
       field :city do
         label "Location"
       end
-      fields :password, :password_confirmation, :display_name, :tags, :game, :city, :affiliation
+      exclude_fields :password, :password_confirmation
+      fields :display_name, :tags, :game, :city, :affiliation, :set_password
     end
     list do
       fields :id, :display_name, :current_sign_in_at, :locked_at, :game
