@@ -7,7 +7,8 @@ class Challenge < ActiveRecord::Base
   validates :name, :point_value, :flags, :category_id, :state, presence: true
   validates :state, inclusion: %w( open closed force_closed )
 
-  default_scope -> { order(point_value: :asc, name: :asc) }
+  # Handles the ordering of all returned challenge objects.
+  default_scope -> { order(:point_value, :name) }
   
   attr_accessor :submitted_flag
   

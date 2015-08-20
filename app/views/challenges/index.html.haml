@@ -13,7 +13,7 @@
       - max.times do |row|
         %tr
           - @categories.count.times do |column|
-            - challenges = @categories[column].get_ordered_challenges
+            - challenges = @categories[column].challenges
             - if row < challenges.count
               - challenge = challenges[row]
               - is_solved = false

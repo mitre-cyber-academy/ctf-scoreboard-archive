@@ -10,13 +10,10 @@ class Category < ActiveRecord::Base
   # and has a name that comes after the current one. The order in which elements are returned
   # to self.challenges in is set in the challenges model.
   def next_challenge(challenge)
-    challenges = self.get_ordered_challenges
+    # Order of challenges is handled by default scope in challenge.rb
+    challenges = self.challenges
     index = challenges.find_index(challenge)
     challenges.at(index + 1)
-  end
-
-  def get_ordered_challenges
-    self.challenges.order(:point_value, :name)
   end
   
 end
