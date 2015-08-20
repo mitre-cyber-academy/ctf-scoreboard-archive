@@ -88,6 +88,12 @@ RailsAdmin.config do |config|
       fields :name, :point_value, :state, :category
     end
   end
+
+  config.model Flag do
+    modal do
+      fields :flag, :api_request, :video_url
+    end
+  end
   
   config.model SolvedChallenge do
     list do

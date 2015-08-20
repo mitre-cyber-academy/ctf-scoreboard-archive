@@ -3,5 +3,5 @@ class Flag < ActiveRecord::Base
 
   has_many :solved_challenges
 
-  validates :flag, :challenge, presence: true
+  validates :flag, presence: true
 end
