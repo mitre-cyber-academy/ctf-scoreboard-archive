@@ -45,9 +45,11 @@ class ChallengesController < ApplicationController
       # we really don't care that much if the actions really happen. The player properly
       # being credited their points is more important.
       @api_url = flag_found.api_request
-      begin
-        Net::HTTP.get(URI.parse(@api_url)) if @api_url
-      rescue Exception
+      Thread.new do
+        begin
+          Net::HTTP.get(URI.parse(@api_url)) if @api_url
+        rescue Exception
+        end
       end
 
       if is_player
