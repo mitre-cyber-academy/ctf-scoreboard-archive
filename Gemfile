@@ -16,6 +16,11 @@ group :development do
   gem 'sqlite3'
 end
 
+group :test do
+  gem "rspec-rails"
+  gem 'factory_girl_rails'
+end
+
 group :assets do
   gem 'sass-rails'
   gem 'coffee-rails'

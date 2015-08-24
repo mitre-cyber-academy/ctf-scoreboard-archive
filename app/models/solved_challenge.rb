@@ -1,9 +1,11 @@
 class SolvedChallenge < FeedItem
   
-  validates :challenge_id, presence: true
+  validates :challenge_id, :flag, presence: true
   validate :user_has_not_solved_challenge, :challenge_is_open, :game_is_open
   
   after_save :award_achievement, :open_next_challenge
+
+  belongs_to :flag
   
   def description
     %[Solved challenge "#{self.challenge.category.name} #{self.challenge.point_value}"]
@@ -45,7 +47,7 @@ class SolvedChallenge < FeedItem
     challenge = self.challenge
     category = challenge.category
     challenge = category.next_challenge(challenge)
-    if challenge
+    if challenge && challenge.available?
       challenge.update_attribute(:state, "open")
     end
   end

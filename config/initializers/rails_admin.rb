@@ -5,7 +5,7 @@ RailsAdmin.config do |config|
   config.label_methods << :email
   
   config.authorize_with do
-    redirect_to root_path unless current_user.admin?
+    redirect_to main_app.root_path unless current_user.try(:admin?)
   end
   
   config.model User do
@@ -39,6 +39,7 @@ RailsAdmin.config do |config|
   end
   
   config.model Player do
+    configure :set_password
     edit do
       field :email do
         label "Login"
@@ -46,7 +47,8 @@ RailsAdmin.config do |config|
       field :city do
         label "Location"
       end
-      fields :password, :password_confirmation, :display_name, :tags, :game, :city, :affiliation
+      exclude_fields :password, :password_confirmation
+      fields :display_name, :tags, :game, :city, :affiliation, :eligible, :set_password
     end
     list do
       fields :id, :display_name, :current_sign_in_at, :locked_at, :game
@@ -84,6 +86,12 @@ RailsAdmin.config do |config|
   config.model Challenge do
     list do
       fields :name, :point_value, :state, :category
+    end
+  end
+
+  config.model Flag do
+    modal do
+      fields :flag, :api_request, :video_url
     end
   end
   
