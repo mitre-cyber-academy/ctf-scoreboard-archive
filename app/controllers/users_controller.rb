@@ -25,8 +25,8 @@ class UsersController < ApplicationController
   
   
   def download
-    if File.exists? "/opt/keys/#{current_user.email}.zip"
-      send_file "/opt/keys/#{current_user.email}.zip", type: "application/zip"
+    if File.exists? "/opt/keys/#{current_user.key_file_name}.zip"
+      send_file "/opt/keys/#{current_user.key_file_name}.zip", type: "application/zip"
     else
       player = Player.find(params[:id])
       redirect_to player, flash: {error: "Your VPN cert hasn't been generated yet. Check back in 2 minutes." }

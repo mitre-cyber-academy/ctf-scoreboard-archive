@@ -25,6 +25,13 @@ class User < ActiveRecord::Base
     end
   end
 
+  # Grab the first 10 characters from the email and append the users ID.
+  # Since we have 2 different scoreboards the ID is not sufficient, therefore
+  # if we seed it with some additional data it should solve the issue.
+  def key_file_name
+    self.email.tr('^A-Za-z', '')[0..10] + self.id.to_s
+  end
+
   def set_password; nil; end
 
   def set_password=(value)
@@ -37,7 +44,7 @@ class User < ActiveRecord::Base
   private
   
   def touch_file
-    `touch /opt/keys/#{self.email}` 
+    `touch /opt/keys/#{self.key_file_name}` 
   end
   
 end
