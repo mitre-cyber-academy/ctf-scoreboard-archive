@@ -6,6 +6,9 @@ Scoreboard::Application.configure do
   # since you don't have to restart the web server when you make code changes.
   config.cache_classes = false
 
+  # Add this to your production environment with the proper jumpbox ip specified.
+  config.jumpbox = { :ip => "" }
+
   # Log error messages when you accidentally call methods on nil.
   config.whiny_nils = true
 
