@@ -9,7 +9,7 @@ This repository is for the scoreboard used to run MITRE capture the flag competi
 1. Install ruby.
 2. In your terminal run `gem install bundle`
 3. Run `bundle install`
-4. Run `bundle exec rails c`
+4. Run `bundle exec rails s`
 5. Open the webpage shown in your terminal from the last command in your browser.
 
 ### How do I contribute?
