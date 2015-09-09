@@ -6,7 +6,7 @@
     No description
   - else
     = raw(BlueCloth.new(@challenge.description).to_html)
-- if @solved_video_url
+- if !@solved_video_url.blank?
   .embed-container
     = embed(@solved_video_url)
 
