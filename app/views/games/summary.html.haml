@@ -18,68 +18,66 @@
 = render partial: "users/list", locals: { players: @top_players }
 %hr
 
-%div{class:"row"}
-	%div{class: "span12"}
-		%h3{:class=>"muted"}
-			Flags/Hour:
-			%h4{id:"scoreToggle" , :class=>"muted offset", onclick:"Javascript:window.toggleScoreDisplay()"}
-				Show Score over Time
-		= render partial: "events/timeline", locals: {id: 'timeline', data: @submitted_flags, height:200, width: 940, interpolate: "basis", style:"timeline"}
-		:coffeescript
-			filterByDate = (date) -> ((el)->(new Date(el.updated_at) < date))
-			timeSlices = []
-			for hour in [1..hours]
-				timeSlice = new Date(start.getTime()+hour*3600000)
-				challenges = solved_challenges.filter(filterByDate(timeSlice))
-				timeSlices.push {"time":timeSlice, "challenges": challenges, "points":d3.sum(challenges, (d) -> (d.point_value))}
-			# Make some scales here
-			window.heightScale = d3.scale.linear()
-				.range([chartHeight["timeline"], 0])
-				.domain([0,d3.max(timeSlices, (d) -> (d.points))*1.1])
+- if not @game.disable_flags_an_hour_graph
+	%div{class:"row"}
+		%div{class: "span12"}
+			%h3{:class=>"muted"}
+				Flags/Hour:
+				%h4{id:"scoreToggle" , :class=>"muted offset", onclick:"Javascript:window.toggleScoreDisplay()"}
+					Show Score over Time
+			= render partial: "events/timeline", locals: {id: 'timeline', data: @submitted_flags, height:200, width: 940, interpolate: "basis", style:"timeline"}
+			:coffeescript
+				filterByDate = (date) -> ((el)->(new Date(el.updated_at) < date))
+				timeSlices = []
+				for hour in [1..hours]
+					timeSlice = new Date(start.getTime()+hour*3600000)
+					challenges = solved_challenges.filter(filterByDate(timeSlice))
+					timeSlices.push {"time":timeSlice, "challenges": challenges, "points":d3.sum(challenges, (d) -> (d.point_value))}
+				# Make some scales here
+				window.heightScale = d3.scale.linear()
+					.range([chartHeight["timeline"], 0])
+					.domain([0,d3.max(timeSlices, (d) -> (d.points))*1.1])
 
-			window.timeSlices = timeSlices
-			window.timeScale = d3.time.scale()
-				.range([0,chartWidth["timeline"]])
-				.domain([start,new Date(start.getTime()+hours*3600000)])
-
-
-
-			area = d3.svg.area()
-				.interpolate("monotone")
-				.x((d) -> (timeScale(new Date(d["time"]))))
-				.y0(chartHeight[id])
-				.y1(chartHeight[id])
-			d3.select("#timeline").select("svg").append("path")
-				.datum(timeSlices)
-				.attr("d", area)
-				.attr("id", "solved_challenges")
-				.attr("shown", 0)
-			window.toggleScoreDisplay = () ->
-				sd = d3.select("#solved_challenges")
-				if sd.attr("shown") == "0"
-					area.y1((d) -> (heightScale(d.points)))
-					d3.select("#solved_challenges")
-						.datum(timeSlices)
-						.transition()
-						.duration(500)
-						.attr("d", area)
-						.attr("id", "solved_challenges")
-						.attr("shown", "1")
-					d3.select("#scoreToggle").text("Hide Score over Time")
-				else
-					area.y1((d)->chartHeight[id])
-					d3.select("#solved_challenges")
-						.datum(timeSlices)
-						.transition()
-						.duration(500)
-						.attr("d", area)
-						.attr("id", "solved_challenges")
-						.attr("shown", "0")
-					d3.select("#scoreToggle").text("Show Score over Time")
+				window.timeSlices = timeSlices
+				window.timeScale = d3.time.scale()
+					.range([0,chartWidth["timeline"]])
+					.domain([start,new Date(start.getTime()+hours*3600000)])
 
 
-			
-%hr
+
+				area = d3.svg.area()
+					.interpolate("monotone")
+					.x((d) -> (timeScale(new Date(d["time"]))))
+					.y0(chartHeight[id])
+					.y1(chartHeight[id])
+				d3.select("#timeline").select("svg").append("path")
+					.datum(timeSlices)
+					.attr("d", area)
+					.attr("id", "solved_challenges")
+					.attr("shown", 0)
+				window.toggleScoreDisplay = () ->
+					sd = d3.select("#solved_challenges")
+					if sd.attr("shown") == "0"
+						area.y1((d) -> (heightScale(d.points)))
+						d3.select("#solved_challenges")
+							.datum(timeSlices)
+							.transition()
+							.duration(500)
+							.attr("d", area)
+							.attr("id", "solved_challenges")
+							.attr("shown", "1")
+						d3.select("#scoreToggle").text("Hide Score over Time")
+					else
+						area.y1((d)->chartHeight[id])
+						d3.select("#solved_challenges")
+							.datum(timeSlices)
+							.transition()
+							.duration(500)
+							.attr("d", area)
+							.attr("id", "solved_challenges")
+							.attr("shown", "0")
+						d3.select("#scoreToggle").text("Show Score over Time")
+	%hr
 %div{class: "row"}
 	%div.span4
 		%h3{:class=>"h4 muted"}
