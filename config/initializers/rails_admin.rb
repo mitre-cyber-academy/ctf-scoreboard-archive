@@ -64,6 +64,7 @@ RailsAdmin.config do |config|
   
   config.model Game do
     configure :disable_vpn, :boolean
+    configure :disable_flags_an_hour_graph, :boolean
     list do
       fields :name, :start, :stop
     end
@@ -74,6 +75,9 @@ RailsAdmin.config do |config|
       end
       field :disable_vpn do
         label "Hide VPN Cert Download"
+      end
+      field :disable_flags_an_hour_graph do
+        label "Hide Flags/Hour graph from Game Summary"
       end
     end
   end

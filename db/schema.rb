@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160112192523) do
+ActiveRecord::Schema.define(version: 20160112203043) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -64,7 +64,8 @@ ActiveRecord::Schema.define(version: 20160112192523) do
     t.datetime "updated_at"
     t.text     "tos"
     t.string   "irc"
-    t.boolean  "disable_vpn", default: false
+    t.boolean  "disable_vpn",                 default: false
+    t.boolean  "disable_flags_an_hour_graph", default: false
   end
 
   create_table "keys", force: :cascade do |t|
