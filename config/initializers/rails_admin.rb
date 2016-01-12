@@ -63,6 +63,7 @@ RailsAdmin.config do |config|
   end
   
   config.model Game do
+    configure :disable_vpn, :boolean
     list do
       fields :name, :start, :stop
     end
@@ -70,6 +71,9 @@ RailsAdmin.config do |config|
       fields :name, :start, :stop, :irc
       field :tos do
         label "Terms of Service"
+      end
+      field :disable_vpn do
+        label "Hide VPN Cert Download"
       end
     end
   end
