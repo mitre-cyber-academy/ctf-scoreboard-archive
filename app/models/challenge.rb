@@ -1,17 +1,20 @@
 class Challenge < ActiveRecord::Base
   
   belongs_to :category
-
-  has_many :flags, :dependent => :destroy
   
+  has_many :flags, :dependent => :destroy, inverse_of: :challenge
+
   validates :name, :point_value, :flags, :category_id, :state, presence: true
+
+  accepts_nested_attributes_for :flags, :allow_destroy => true
+
   validates :state, inclusion: %w( open closed force_closed )
 
   # Handles the ordering of all returned challenge objects.
   default_scope -> { order(:point_value, :name) }
   
   attr_accessor :submitted_flag
-  
+
   def state_enum
     ['open', 'closed', 'force_closed']
   end

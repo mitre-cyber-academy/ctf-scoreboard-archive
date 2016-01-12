@@ -90,7 +90,7 @@ RailsAdmin.config do |config|
   end
 
   config.model Flag do
-    modal do
+    nested do
       fields :flag, :api_request, :video_url
     end
   end
