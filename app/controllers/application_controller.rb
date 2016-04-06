@@ -25,7 +25,7 @@ class ApplicationController < ActionController::Base
     unless current_user.nil?
       now = Time.now
       if now < @game.start
-        flash.now[:info] = "The game will open <strong><span id=\"major-tom\"></span> on #{@game.start.strftime("%b %e %y, %R %Z")}</strong>."
+        flash.now[:info] = "The game will open <strong><span id=\"major-tom\"></span> on #{@game.start.strftime("%b %e %y, %R %Z")}</strong>.".html_safe
       elsif now < @game.stop && now > @game.stop - 1.hour
         flash.now[:info] = "The game will stop accepting submissions <strong><span id=\"major-tom\"></span> on #{@game.stop.strftime("%b %e %y, %R %Z")}</strong>."
       else
