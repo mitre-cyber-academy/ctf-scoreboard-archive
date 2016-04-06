@@ -11,6 +11,7 @@ gem "kaminari"
 gem "net-ssh"
 gem 'geocoder'
 gem 'jquery-rails'
+gem 'rails_admin_import'
 
 group :development do
   gem 'sqlite3'
