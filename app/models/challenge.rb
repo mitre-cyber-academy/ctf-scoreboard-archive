@@ -19,8 +19,13 @@ class Challenge < ActiveRecord::Base
     ['open', 'closed', 'force_closed']
   end
   
+  # This bypasses game open check and only looks at the challenge state
+  def challenge_open?
+    self.state == "open"
+  end  
+  
   def open?
-    (self.state == "open" && self.category.game.open?)
+    (self.challenge_open? && self.category.game.open?)
   end
   
   def is_solved?
