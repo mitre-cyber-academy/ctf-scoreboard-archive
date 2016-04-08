@@ -1,6 +1,19 @@
 %h2 Top 5 Teams
-= render partial: "users/list", locals: { players: @top_players }
-
+%br
+- if @divisions.count > 1
+  .container-fluid
+    -# Generate tabs for each division with a name
+    %ul.nav.nav-tabs
+      -@divisions.each do |d|
+        %li
+          = link_to "#{d.name}", "#{d.name}-tab", "data-toggle"=>"tab"
+        .tab-content
+          .tab-pane{ :id => "#{d.name}-tab" }
+            = render partial: "users/list", locals: { players: @top_players }
+- else
+  .container-fluid
+    = render partial: "users/list", locals: { players: @top_players }
+%br
 %h2 Game Feed
 - if @events.count == 0
   .zero-items-text No Events
@@ -25,6 +38,3 @@
           %td= e.created_at.strftime("%b %e %y, %R %Z")
 
 = paginate @events
-
-
-  
