@@ -3,7 +3,8 @@ class Challenge < ActiveRecord::Base
   belongs_to :category
   
   has_many :flags, :dependent => :destroy, inverse_of: :challenge
-
+  has_many :solved_challenges, through: :games
+  
   validates :name, :point_value, :flags, :category_id, :state, presence: true
 
   accepts_nested_attributes_for :flags, :allow_destroy => true

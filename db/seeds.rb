@@ -31,9 +31,13 @@ their meanings are as follows:\r\n<ul>\r\n<li><b style=\"color:green;\">Green:</
 <li><b style=\"color:gray;\">Gray:</b> Will open when preceding challenge is solved.</li>\r\n</ul>"
 )
 
+
+division1 = Division.create!(name: "High School", game_id: game.id)
+division2 = Division.create!(name: "College", game_id: game.id)
+
 # players
-Player.create!(display_name: 'pwnies', email: 'pwnies', password: 'test123456', game_id: game.id)
-Player.create!(display_name: 'n00bs', email: 'n00bs', password: 'test123456', game_id: game.id)
+Player.create!(display_name: 'pwnies', email: 'pwnies', password: 'test123456', division_id: division1.id)
+Player.create!(display_name: 'n00bs', email: 'n00bs', password: 'test123456', division_id: division2.id)
 
 # crypto
 category = Category.create!(name: 'Crypto', game: game)

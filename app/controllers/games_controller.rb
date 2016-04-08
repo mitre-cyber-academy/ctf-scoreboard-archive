@@ -9,7 +9,8 @@ class GamesController < ApplicationController
     respond_to do |format|
       format.html {
         enable_auto_reload if @game.open?
-        @top_players = @game.ordered_players[0..4]
+        @divisions = @game.divisions
+        # @top_players = @game.ordered_players[0..4]
         @events = @game.feed_items.order(:created_at).reverse_order.page(params[:page]).per(25)
         @title = @game.name
         @html_title = @title

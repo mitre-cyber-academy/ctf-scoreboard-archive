@@ -9,10 +9,10 @@
           = link_to "#{d.name}", "#{d.name}-tab", "data-toggle"=>"tab"
         .tab-content
           .tab-pane{ :id => "#{d.name}-tab" }
-            = render partial: "users/list", locals: { players: @top_players }
+            = render partial: "users/list", locals: { players: d.ordered_players[0..4] }
 - else
   .container-fluid
-    = render partial: "users/list", locals: { players: @top_players }
+    = render partial: "users/list", locals: { players: @divisions.first.ordered_players[0..4] }
 %br
 %h2 Game Feed
 - if @events.count == 0
