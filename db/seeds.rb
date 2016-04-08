@@ -10,7 +10,15 @@
 Admin.create!(email: 'root', password: 'ChangePa$$w0rd')
 
 # default game
-game = Game.create!(name: 'Test Game', start: Time.now, stop: Time.now + 2.days)
+game = Game.create!(name: 'Test Game', start: Time.now, stop: Time.now + 2.days,
+  tos: "Challenges will sometimes show up as different colors, 
+the possible colors and their meanings are as follows:\r\n\r\n
+<b style=\"color:green;\">Green:</b> Available and ready to be solved by your team.<br />\r\n
+<b style=\"color:#08C;\">Blue:</b> Available and already solved by your team.<br />\r\n
+<b style=\"color:DarkOrange;\">Orange:</b> Solved by a team but locked by admins due to issue with the challenge.<br />\r\n
+<b style=\"color:red;\">Red:</b> Unsolved by any team and locked by admins.<br />\r\n
+<b style=\"color:gray;\">Gray:</b> Will open when preceding challenge is solved."
+)
 
 # players
 Player.create!(display_name: 'pwnies', email: 'pwnies', password: 'test123456', game_id: game.id)
