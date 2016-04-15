@@ -27,6 +27,7 @@ class GamesController < ApplicationController
 
   def summary
     @title = "Game Summary"
+    @navbar_override = "summary"
     @submitted_flags = to_timeline SubmittedFlag.all.group_by {|sf| sf.updated_at.change(:min=>0)}
     hours = ((@game.stop - @game.start)/1.hours).round
     @solved_challenges = SolvedChallenge.all
