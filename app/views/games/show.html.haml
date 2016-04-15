@@ -1,19 +1,6 @@
 %h2 Top 5 Teams
 %br
-- if @divisions.count > 1
-  .panel.panel-default
-    -# Generate tabs for each division with a name
-    %ul.nav.nav-tabs
-      -@divisions.each do |d|
-        %li{ :class => ('active' if @active_division.eql? d) }
-          = link_to "#{d.name}", "#division-#{d.id}-tab", "data-toggle"=>"tab"
-    .tab-content
-      -@divisions.each do |d|
-        .tab-pane{ :class => ('active' if @active_division.eql? d), :id => "division-#{d.id}-tab" }
-          = render partial: "users/list", locals: { players: d.ordered_players[0..4] }
-- else
-  .container-fluid
-    = render partial: "users/list", locals: { players: @divisions.first.ordered_players[0..4] }
+= render partial: "users/divisions", locals: {divisions: @divisions, active_division: @active_division, only_top_five: true}
 %br
 %h2 Game Feed
 - if @events.count == 0

@@ -9,10 +9,15 @@ class Division < ActiveRecord::Base
 
   validates :name, presence: true
 
-  def ordered_players
+  def ordered_players(only_top_five = false)
     eligible_players = filter_and_sort_players(eligible: true)
     ineligible_players = filter_and_sort_players(eligible: false)
     eligible_players.push(*ineligible_players)
+    if only_top_five
+      eligible_players[0..4]
+    else
+      eligible_players
+    end
   end
 
   private

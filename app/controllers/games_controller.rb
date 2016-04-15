@@ -35,7 +35,8 @@ class GamesController < ApplicationController
       sc[:user_id] = sc[:id] = sc[:challenge_id] = nil     
     end
     @time_slices = ((@game.stop - @game.start)/1.hours).round
-    @top_players = @game.ordered_players[0..4]
+    @divisions = @game.divisions
+    @active_division = @divisions.first
     @signed_in_players = Player.where("current_sign_in_ip is not null")
     @players = Player.all
 
