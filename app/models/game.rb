@@ -5,6 +5,7 @@ class Game < ActiveRecord::Base
 
   # feed items
   has_many :feed_items, through: :divisions
+  has_many :achievements, through: :divisions
 
   # divisions
   has_many :divisions

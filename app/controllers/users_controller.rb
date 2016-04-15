@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   before_filter :enforce_access, only: [ :download ]
   
   def index
-    @players = @game.ordered_players
+    @players = @division.ordered_players
     @title = "Teams"
     @subtitle = pluralize(@players.count, "team")
   end
