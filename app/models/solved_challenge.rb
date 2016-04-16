@@ -6,6 +6,7 @@ class SolvedChallenge < FeedItem
   after_save :award_achievement, :open_next_challenge
 
   belongs_to :flag
+  belongs_to :division
   
   def description
     %[Solved challenge "#{self.challenge.category.name} #{self.challenge.point_value}"]

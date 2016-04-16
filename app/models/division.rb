@@ -3,9 +3,11 @@ class Division < ActiveRecord::Base
 
   has_many :players
 
+  has_many :challenge_states
+
   has_many :achievements, through: :players
   has_many :feed_items, through: :players
-  has_many :solved_challenges, through: :players
+  has_many :solved_challenges
 
   validates :name, presence: true
 

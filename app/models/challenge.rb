@@ -1,6 +1,8 @@
 class Challenge < ActiveRecord::Base
   
   belongs_to :category
+
+  has_many :challenge_states
   
   has_many :flags, :dependent => :destroy, inverse_of: :challenge
   has_many :solved_challenges, through: :games
