@@ -71,7 +71,6 @@ class Challenge < ActiveRecord::Base
 
   # Gets the state using a division context
   def get_state(division)
-    puts "Division is #{division}"
     challenge_states.where(division: division).first.state
   end
 

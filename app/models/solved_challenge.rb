@@ -1,6 +1,6 @@
 class SolvedChallenge < FeedItem
   
-  validates :challenge_id, :flag, presence: true
+  validates :challenge_id, :flag, :division_id, :player, presence: true
   validate :user_has_not_solved_challenge, :challenge_is_open, :game_is_open
   
   after_save :award_achievement, :open_next_challenge

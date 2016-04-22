@@ -56,7 +56,7 @@ class ChallengesController < ApplicationController
       end
 
       if is_player
-        SolvedChallenge.create(player: current_user, challenge: @challenge, flag: flag_found)
+        SolvedChallenge.create(player: current_user, challenge: @challenge, flag: flag_found, division: current_user.division)
         redirect_to @challenge, flash: { success: "Flag accepted!" }
       else
         redirect_to challenge_url(@challenge, flag: flag_found), flash: { success: "Flag accepted!" }
