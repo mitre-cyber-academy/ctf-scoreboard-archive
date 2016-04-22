@@ -225,6 +225,3 @@ DEPENDENCIES
   sqlite3
   therubyracer
   uglifier
-
-BUNDLED WITH
-   1.10.6
