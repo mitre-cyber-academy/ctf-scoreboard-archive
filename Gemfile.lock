@@ -45,6 +45,9 @@ GEM
     bcrypt (3.1.10)
     bluecloth (2.2.0)
     builder (3.2.2)
+    bullet (5.0.0)
+      activesupport (>= 3.0.0)
+      uniform_notifier (~> 1.9.0)
     coffee-rails (4.1.1)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0, < 5.1.x)
@@ -198,6 +201,7 @@ GEM
     uglifier (2.7.1)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
+    uniform_notifier (1.9.0)
     warden (1.2.3)
       rack (>= 1.0)
 
@@ -207,6 +211,7 @@ PLATFORMS
 DEPENDENCIES
   aws-sdk (< 2.0)
   bluecloth
+  bullet
   coffee-rails
   devise
   factory_girl_rails
