@@ -30,7 +30,7 @@ class GamesController < ApplicationController
     @navbar_override = "summary"
     @submitted_flags = to_timeline SubmittedFlag.all.group_by {|sf| sf.updated_at.change(:min=>0)}
     hours = ((@game.stop - @game.start)/1.hours).round
-    @solved_challenges = SolvedChallenge.all
+    @solved_challenges = SolvedChallenge.includes(:challenge).all
     @solved_challenges.each do |sc|
       sc[:point_value] = sc.challenge.point_value 
       sc[:user_id] = sc[:id] = sc[:challenge_id] = nil     

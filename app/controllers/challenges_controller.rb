@@ -4,7 +4,7 @@ class ChallengesController < ApplicationController
   before_filter :find_challenge, except: :index
   
   def index
-    @categories = @game.categories.order(:name)
+    @categories = @game.categories.includes(:challenges).order(:name)
     @challenges = @game.challenges
     @divisions = @game.divisions
     # Only exists for the purpose of providing an active tab for admins.
