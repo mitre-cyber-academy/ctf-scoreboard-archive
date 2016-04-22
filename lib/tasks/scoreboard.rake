@@ -81,47 +81,6 @@ namespace :scoreboard do
     end
     
   end
-  
-  namespace :keys do
-    desc 'Move keys from the scoreboard onto the appropriate Jumpboxes'
-    task :copy => [:environment] do
-      
-      require 'net/ssh'
-      Net::SSH.start(Rails.configuration.jumpbox[:ip], Rails.configuration.jumpbox[:user]) do |ssh|
-        Game.instance.players.each do |player|
-          
-          # gather folders
-          ssh_dir = File.join('/', 'home', "#{player.email}", '.ssh')
-          
-          # make sure we have an ssh dir for this user
-          unless ssh.exec!("stat #{ssh_dir}").match(/No such file/i)
-            puts "Adding #{player.email}'s keys to Jump Box"
-            authorized_keys_path = File.join(ssh_dir, "authorized_keys")
-            
-            # make me the owner and stomp
-            ssh.exec!(%[sudo chown #{Rails.configuration.jumpbox[:user]} "#{authorized_keys_path}"])
-            ssh.exec!(%[truncate --size 0 "#{authorized_keys_path}"])
-            
-            # place keys and newlines
-            player.keys.each do |key|
-              ssh.exec!(%[echo "#{key.key}" >> "#{authorized_keys_path}"])
-              ssh.exec!(%[echo "" >> "#{authorized_keys_path}"])
-              ssh.exec!(%[echo "" >> "#{authorized_keys_path}"])
-            end
-            
-            # adjust permissions and owner
-            ssh.exec!(%[chmod 644 "#{authorized_keys_path}"])
-            ssh.exec!(%[sudo chown #{player.email} "#{authorized_keys_path}"])
-            
-          else
-            puts "Unable to add #{player.email}'s keys to #{ssh_dir}"
-          end
-          
-        end
-      end
-      
-    end
-  end
 
   namespace :certificates do
     desc 'Sync user certificates between scoreboard and VPN box'

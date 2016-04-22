@@ -101,7 +101,6 @@ GEM
     minitest (5.8.4)
     multi_json (1.11.0)
     nested_form (0.3.2)
-    net-ssh (2.9.2)
     nokogiri (1.6.7.2)
       mini_portile2 (~> 2.0.0.rc2)
     orm_adapter (0.5.0)
@@ -216,7 +215,6 @@ DEPENDENCIES
   jbuilder
   jquery-rails
   kaminari
-  net-ssh
   pg
   rails (~> 4.2.6)
   rails_admin

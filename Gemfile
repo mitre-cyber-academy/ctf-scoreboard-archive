@@ -8,7 +8,6 @@ gem 'rails_admin'
 gem 'devise'
 gem "jbuilder"
 gem "kaminari"
-gem "net-ssh"
 gem 'geocoder'
 gem 'jquery-rails'
 
