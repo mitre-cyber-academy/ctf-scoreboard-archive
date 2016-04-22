@@ -218,10 +218,13 @@ DEPENDENCIES
   kaminari
   net-ssh
   pg
-  rails
+  rails (~> 4.2.6)
   rails_admin
   rspec-rails
   sass-rails
   sqlite3
   therubyracer
   uglifier
+
+BUNDLED WITH
+   1.11.2

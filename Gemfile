@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails'
+gem 'rails', '~> 4.2.6'
 gem 'bluecloth'
 gem 'aws-sdk', '<2.0'
 gem 'haml'
