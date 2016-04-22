@@ -48,13 +48,23 @@ RailsAdmin.config do |config|
         label "Location"
       end
       exclude_fields :password, :password_confirmation
-      fields :display_name, :tags, :game, :city, :affiliation, :eligible, :set_password
+      field :display_name
+      field :tags
+      field :division
+      field :city
+      field :affiliation
+      field :eligible
+      field :set_password
       field :set_password do
         label "Password"
       end
     end
     list do
-      fields :id, :display_name, :current_sign_in_at, :locked_at, :game
+      field :id
+      field :display_name
+      field :current_sign_in_at
+      field :locked_at
+      field :division
     end
     create do
       field :set_password do
