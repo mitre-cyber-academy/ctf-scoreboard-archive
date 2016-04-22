@@ -10,7 +10,7 @@ class GamesController < ApplicationController
       format.html {
         enable_auto_reload if @game.open?
         @divisions = @game.divisions
-        @active_division = @divisions.first
+        @active_division = current_user && !current_user.admin? ? current_user.division : @divisions.first
         @events = @game.feed_items.order(:created_at).reverse_order.page(params[:page]).per(25)
         @title = @game.name
         @html_title = @title
@@ -37,7 +37,7 @@ class GamesController < ApplicationController
     end
     @time_slices = ((@game.stop - @game.start)/1.hours).round
     @divisions = @game.divisions
-    @active_division = @divisions.first
+    @active_division = current_user && !current_user.admin? ? current_user.division : @divisions.first
     @signed_in_players = Player.where("current_sign_in_ip is not null")
     @players = Player.all
 

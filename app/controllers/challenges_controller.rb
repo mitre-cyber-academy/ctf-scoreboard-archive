@@ -6,6 +6,9 @@ class ChallengesController < ApplicationController
   def index
     @categories = @game.categories.order(:name)
     @challenges = @game.challenges
+    @divisions = @game.divisions
+    # Only exists for the purpose of providing an active tab for admins.
+    @active_division = @divisions.first
     @title = "Challenges"
     @subtitle = %[#{pluralize(@challenges.count, "challenge")} in #{pluralize(@categories.count, "category")}]
   end
@@ -68,7 +71,7 @@ class ChallengesController < ApplicationController
     
     def find_challenge
       @challenge = @game.challenges.find(params[:id])
-      if !current_user.admin? && !@challenge.open?
+      if !current_user.admin? && !@challenge.open?(current_user.division)
         raise ActiveRecord::RecordNotFound
       end
     end

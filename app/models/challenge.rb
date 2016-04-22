@@ -11,7 +11,7 @@ class Challenge < ActiveRecord::Base
   
   validates :name, :point_value, :flags, :category_id, presence: true
 
-  validates :starting_state, :inclusion => {:in => ChallengeState.states.map {|v| v[0]}}
+  enum starting_state: ChallengeState.states
 
   accepts_nested_attributes_for :flags, :allow_destroy => true
 
@@ -60,11 +60,18 @@ class Challenge < ActiveRecord::Base
     current_challenge = get_current_solved_challenge(user)
     current_challenge.flag.api_request unless current_challenge.nil? || current_challenge.flag.nil?
   end
-  
+
+  def set_state(division, newState)
+    challengeState = challenge_states.where(division: division).first
+    challengeState.state = newState
+    challengeState.save
+  end
+
   private
 
   # Gets the state using a division context
   def get_state(division)
+    puts "Division is #{division}"
     challenge_states.where(division: division).first.state
   end
 
