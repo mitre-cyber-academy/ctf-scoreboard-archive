@@ -102,7 +102,7 @@ RailsAdmin.config do |config|
   
   config.model Challenge do
     list do
-      fields :name, :point_value, :state, :category
+      fields :name, :point_value, :starting_state, :category
     end
   end
 

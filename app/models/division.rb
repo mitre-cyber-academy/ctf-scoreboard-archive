@@ -1,9 +1,11 @@
 class Division < ActiveRecord::Base
+  after_create :add_states_to_challenges
+
   belongs_to :game
 
   has_many :players
 
-  has_many :challenge_states
+  has_many :challenge_states, dependent: :destroy
 
   has_many :achievements, through: :players
   has_many :feed_items, through: :players
@@ -23,6 +25,12 @@ class Division < ActiveRecord::Base
   end
 
   private
+
+  def add_states_to_challenges
+    Challenge.all.each do |c|
+      ChallengeState.create!(challenge: c, division: self, state: c.starting_state)
+    end
+  end
 
   # Sorts the provided list of players.
   def filter_and_sort_players(filters)

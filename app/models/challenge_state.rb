@@ -1,5 +1,5 @@
 class ChallengeState < ActiveRecord::Base
-  before_save :default_values
+  before_validation :default_values
   belongs_to :challenge
   belongs_to :division
 
