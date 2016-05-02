@@ -6,8 +6,8 @@ gem 'aws-sdk', '<2.0'
 gem 'haml'
 gem 'rails_admin'
 gem 'devise'
-gem "jbuilder"
-gem "kaminari"
+gem 'jbuilder'
+gem 'kaminari'
 gem 'geocoder'
 gem 'jquery-rails'
 
@@ -17,14 +17,14 @@ group :development do
 end
 
 group :test do
-  gem "rspec-rails"
+  gem 'rspec-rails'
   gem 'factory_girl_rails'
 end
 
 group :assets do
   gem 'sass-rails'
   gem 'coffee-rails'
-  gem 'therubyracer', :platform => :ruby
+  gem 'therubyracer', platform: 'ruby'
   gem 'uglifier'
 end
 
