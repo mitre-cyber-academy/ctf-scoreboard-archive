@@ -3,7 +3,7 @@ class ChallengeState < ActiveRecord::Base
   belongs_to :challenge
   belongs_to :division
 
-  validates :challenge_id, :uniqueness => {:scope => :division_id}
+  validates :challenge_id, uniqueness: { scope: :division_id }
 
   validates :state, :challenge, presence: true
 

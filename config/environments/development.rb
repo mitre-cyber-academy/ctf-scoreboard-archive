@@ -7,7 +7,7 @@ Scoreboard::Application.configure do
   config.cache_classes = false
 
   # Add this to your production environment with the proper jumpbox ip specified.
-  config.jumpbox = { :ip => "" }
+  config.jumpbox = { ip: '' }
 
   # Log error messages when you accidentally call methods on nil.
   config.whiny_nils = true
@@ -27,7 +27,7 @@ Scoreboard::Application.configure do
 
   # Do not compress assets
   config.assets.compress = false
-  # when true, eager loads all registered config.eager_load_namespaces. 
+  # when true, eager loads all registered config.eager_load_namespaces.
   # This includes your application, engines, Rails frameworks and any other registered namespace.
   config.eager_load = false
 

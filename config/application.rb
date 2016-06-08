@@ -34,7 +34,7 @@ module Scoreboard
     # config.i18n.default_locale = :de
 
     # Configure the default encoding used in templates for Ruby 1.9.
-    config.encoding = "utf-8"
+    config.encoding = 'utf-8'
 
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password, :flag, :submitted_flag, :key]
@@ -43,8 +43,8 @@ module Scoreboard
     config.assets.enabled = true
 
     config.generators do |g|
-      g.test_framework :rspec, :views => false, :fixture => true
-      g.fixture_replacement :factory_girl, :dir => 'spec/factories'
+      g.test_framework :rspec, views: false, fixture: true
+      g.fixture_replacement :factory_girl, dir: 'spec/factories'
       g.template_engine :haml
     end
   end

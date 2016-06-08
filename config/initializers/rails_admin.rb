@@ -1,51 +1,50 @@
 RailsAdmin.config do |config|
+  config.current_user_method { current_user } # auto-generated
 
-  config.current_user_method { current_user } #auto-generated
-  
   config.label_methods << :email
-  
+
   config.authorize_with do
     redirect_to main_app.root_path unless current_user.try(:admin?)
   end
-  
+
   config.model User do
     visible false
   end
-  
+
   config.model FeedItem do
     visible false
   end
-  
+
   config.model Key do
     list do
       fields :player, :name, :updated_at
     end
   end
-  
+
   config.model Admin do
     edit do
       field :email do
-        label "Login"
+        label 'Login'
       end
       fields :password, :password_confirmation
     end
     list do
       field :id
       field :email do
-        label "Login"
+        label 'Login'
       end
       fields :current_sign_in_at, :locked_at
     end
   end
-  
+
   config.model Player do
     configure :set_password
     edit do
       field :email do
-        label "Login"
+        label 'Login'
       end
       field :city do
-        label "Location"
+        label 'Location'
       end
       exclude_fields :password, :password_confirmation
       field :display_name
@@ -56,7 +55,7 @@ RailsAdmin.config do |config|
       field :eligible
       field :set_password
       field :set_password do
-        label "Password"
+        label 'Password'
       end
     end
     list do
@@ -68,7 +67,7 @@ RailsAdmin.config do |config|
     end
     create do
       field :set_password do
-        label "Password"
+        label 'Password'
         required :true
       end
     end
@@ -80,7 +79,7 @@ RailsAdmin.config do |config|
       end
     end
   end
-  
+
   config.model Game do
     configure :disable_vpn, :boolean
     configure :disable_flags_an_hour_graph, :boolean
@@ -90,17 +89,17 @@ RailsAdmin.config do |config|
     edit do
       fields :name, :start, :stop, :irc
       field :tos do
-        label "Terms of Service"
+        label 'Terms of Service'
       end
       field :disable_vpn do
-        label "Hide VPN Cert Download"
+        label 'Hide VPN Cert Download'
       end
       field :disable_flags_an_hour_graph do
-        label "Hide Flags/Hour graph from Game Summary"
+        label 'Hide Flags/Hour graph from Game Summary'
       end
     end
   end
-  
+
   config.model Category do
     list do
       fields :name, :game
@@ -109,7 +108,7 @@ RailsAdmin.config do |config|
       fields :name, :game
     end
   end
-  
+
   config.model Challenge do
     list do
       fields :name, :point_value, :starting_state, :category
@@ -121,7 +120,7 @@ RailsAdmin.config do |config|
       fields :flag, :api_request, :video_url
     end
   end
-  
+
   config.model SolvedChallenge do
     list do
       fields :player, :challenge, :created_at
@@ -130,38 +129,38 @@ RailsAdmin.config do |config|
       fields :player, :challenge, :created_at
     end
   end
-  
+
   config.model ScoreAdjustment do
     list do
       fields :player, :point_value
       field :text do
-        label "Comments"
+        label 'Comments'
       end
       field :created_at
     end
     edit do
       fields :player, :point_value
       field :text do
-        label "Comments"
+        label 'Comments'
       end
     end
   end
-  
+
   config.model Achievement do
     list do
       field :text do
-        label "Name"
+        label 'Name'
       end
       fields :player, :created_at
     end
     edit do
       field :text do
-        label "Name"
+        label 'Name'
       end
       fields :player
     end
   end
-  
+
   config.model Message do
     edit do
       fields :title, :game, :text
@@ -170,11 +169,10 @@ RailsAdmin.config do |config|
       fields :title, :game, :created_at
     end
   end
-  
+
   config.model SubmittedFlag do
     list do
       fields :player, :challenge, :text, :created_at
     end
   end
-  
 end

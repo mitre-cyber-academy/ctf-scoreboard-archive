@@ -27,36 +27,35 @@ class Division < ActiveRecord::Base
   private
 
   def add_states_to_challenges
-    Challenge.all.each do |c|
+    Challenge.all.find_each do |c|
       ChallengeState.create!(challenge: c, division: self, state: c.starting_state)
     end
   end
 
   # Sorts the provided list of players.
   def filter_and_sort_players(filters)
-    self.players.where(filters).sort do |a, b|
-      
+    players.where(filters).sort do |a, b|
       #
       # get scores
       #
       a_score = a.score
       b_score = b.score
-      
-      # 
+
+      #
       # if the scores are the same sort based on the first
       # team to get to the current score
-      # 
+      #
       if a_score == b_score
-        
+
         #
         # get solved challenges
         #
         future_date = Time.now + 100.years
         a_most_recent = a.solved_challenges.order(:created_at).last
-        a_date = (a_most_recent) ? a_most_recent.created_at : future_date
+        a_date = a_most_recent ? a_most_recent.created_at : future_date
         b_most_recent = b.solved_challenges.order(:created_at).last
-        b_date = (b_most_recent) ? b_most_recent.created_at : future_date
-        
+        b_date = b_most_recent ? b_most_recent.created_at : future_date
+
         #
         # if both teams have solved challenges
         #
@@ -65,7 +64,7 @@ class Division < ActiveRecord::Base
         else
           a_date <=> b_date
         end
-      
+
       #
       # sort based on score
       #

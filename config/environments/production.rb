@@ -18,10 +18,10 @@ Scoreboard::Application.configure do
 
   # Specifies the header that your server uses for sending files
   # (comment out if your front-end server doesn't support this)
-  #config.action_dispatch.x_sendfile_header = "X-Sendfile" 
-  
+  # config.action_dispatch.x_sendfile_header = "X-Sendfile"
+
   # Use 'X-Accel-Redirect' for nginx
-  config.action_dispatch.x_sendfile_header = "X-Accel-Redirect" 
+  config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect'
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
   # config.force_ssl = true
@@ -60,7 +60,7 @@ Scoreboard::Application.configure do
 
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
-  # when true, eager loads all registered config.eager_load_namespaces. 
+  # when true, eager loads all registered config.eager_load_namespaces.
   # This includes your application, engines, Rails frameworks and any other registered namespace.
   config.eager_load = true
 end

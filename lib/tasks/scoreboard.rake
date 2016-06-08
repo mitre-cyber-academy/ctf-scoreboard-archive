@@ -2,7 +2,7 @@ namespace :scoreboard do
   namespace :user do
     desc 'Add a user to the Game'
     task :add, [:player_login, :player, :password] => [:environment] do |_t, args|
-      p = Game.instance.players.find_by_email("#{args[:player_login]}")
+      p = Game.instance.players.find_by_email((args[:player_login]).to_s)
       if p.nil?
         p = Player.new(email: to_s(args[:player_login]), password: to_s(args[:password]), game_id: Game.instance.id)
         p.display_name = to_s(args[:player])
@@ -29,8 +29,8 @@ namespace :scoreboard do
 
       # send to s3
       AWS::S3::Base.establish_connection!(
-        :access_key_id => Rails.configuration.s3_access_key_id,
-        :secret_access_key => Rails.configuration.s3_secret_access_key
+        access_key_id: Rails.configuration.s3_access_key_id,
+        secret_access_key: Rails.configuration.s3_secret_access_key
       )
       bucket = Rails.configuration.s3_bucket_name
       AWS::S3::Bucket.create(bucket)
@@ -50,8 +50,8 @@ namespace :scoreboard do
 
       # get from s3
       AWS::S3::Base.establish_connection!(
-        :access_key_id     => Rails.configuration.s3_access_key_id,
-        :secret_access_key => Rails.configuration.s3_secret_access_key
+        access_key_id: Rails.configuration.s3_access_key_id,
+        secret_access_key: Rails.configuration.s3_secret_access_key
       )
       date = ENV['date']
       path = "/tmp/#{date}.pgdump"
