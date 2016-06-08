@@ -19,6 +19,10 @@ end
 group :test do
   gem 'rspec-rails'
   gem 'factory_girl_rails'
+  gem 'coveralls', require: false
+  gem 'brakeman', require: false
+  gem 'rubocop', require: false
+  gem 'bundler-audit', require: false
 end
 
 group :assets do
