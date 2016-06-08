@@ -31,19 +31,23 @@ their meanings are as follows:\r\n<ul>\r\n<li><b style=\"color:green;\">Green:</
 <li><b style=\"color:gray;\">Gray:</b> Will open when preceding challenge is solved.</li>\r\n</ul>"
 )
 
+
+division1 = Division.create!(name: "High School", game_id: game.id)
+division2 = Division.create!(name: "College", game_id: game.id)
+
 # players
-Player.create!(display_name: 'pwnies', email: 'pwnies', password: 'test123456', game_id: game.id)
-Player.create!(display_name: 'n00bs', email: 'n00bs', password: 'test123456', game_id: game.id)
+Player.create!(display_name: 'pwnies', email: 'pwnies', password: 'test123456', division_id: division1.id)
+Player.create!(display_name: 'n00bs', email: 'n00bs', password: 'test123456', division_id: division2.id)
 
 # crypto
 category = Category.create!(name: 'Crypto', game: game)
-Challenge.create!(name: 'Challenge A', point_value: 100, flags: [ Flag.create(flag: "flag") ], state: 'open', category: category)
-Challenge.create!(name: 'Challenge B', point_value: 200, flags: [ Flag.create(flag: "flag") ], state: 'closed', category: category)
-Challenge.create!(name: 'Challenge C', point_value: 300, flags: [ Flag.create(flag: "flag") ], state: 'closed', category: category)
-Challenge.create!(name: 'Challenge D', point_value: 400, flags: [ Flag.create(flag: "flag") ], state: 'closed', category: category)
+Challenge.create!(name: 'Challenge A', point_value: 100, flags: [ Flag.create(flag: "flag") ], starting_state: 'open', category: category)
+Challenge.create!(name: 'Challenge B', point_value: 200, flags: [ Flag.create(flag: "flag") ], starting_state: 'closed', category: category)
+Challenge.create!(name: 'Challenge C', point_value: 300, flags: [ Flag.create(flag: "flag") ], starting_state: 'closed', category: category)
+Challenge.create!(name: 'Challenge D', point_value: 400, flags: [ Flag.create(flag: "flag") ], starting_state: 'closed', category: category)
 
 category = Category.create!(name: 'Forensics', game: game)
-Challenge.create!(name: 'Challenge E', point_value: 100, flags: [ Flag.create(flag: "flag") ], state: 'open', category: category)
-Challenge.create!(name: 'Challenge F', point_value: 200, flags: [ Flag.create(flag: "flag") ], state: 'closed', category: category)
-Challenge.create!(name: 'Challenge G', point_value: 300, flags: [ Flag.create(flag: "flag") ], state: 'closed', category: category)
-Challenge.create!(name: 'Challenge H', point_value: 400, flags: [ Flag.create(flag: "flag") ], state: 'closed', category: category)
+Challenge.create!(name: 'Challenge E', point_value: 100, flags: [ Flag.create(flag: "flag") ], starting_state: 'open', category: category)
+Challenge.create!(name: 'Challenge F', point_value: 200, flags: [ Flag.create(flag: "flag") ], starting_state: 'closed', category: category)
+Challenge.create!(name: 'Challenge G', point_value: 300, flags: [ Flag.create(flag: "flag") ], starting_state: 'closed', category: category)
+Challenge.create!(name: 'Challenge H', point_value: 400, flags: [ Flag.create(flag: "flag") ], starting_state: 'closed', category: category)

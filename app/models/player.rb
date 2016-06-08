@@ -1,6 +1,6 @@
 class Player < User
   
-  belongs_to :game
+  belongs_to :division
   
   has_many :feed_items, foreign_key: :user_id, dependent: :delete_all
   has_many :solved_challenges, foreign_key: :user_id
@@ -8,7 +8,7 @@ class Player < User
   has_many :achievements, foreign_key: :user_id
   has_many :keys, foreign_key: :user_id, dependent: :delete_all
   
-  validates :game_id, :display_name, presence: true
+  validates :division_id, :display_name, presence: true
   
   geocoded_by :city
   after_validation :geocode, :if => :city_changed?

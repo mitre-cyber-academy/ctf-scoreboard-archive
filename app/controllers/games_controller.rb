@@ -9,7 +9,8 @@ class GamesController < ApplicationController
     respond_to do |format|
       format.html {
         enable_auto_reload if @game.open?
-        @top_players = @game.ordered_players[0..4]
+        @divisions = @game.divisions
+        @active_division = current_user && !current_user.admin? ? current_user.division : @divisions.first
         @events = @game.feed_items.order(:created_at).reverse_order.page(params[:page]).per(25)
         @title = @game.name
         @html_title = @title
@@ -26,15 +27,17 @@ class GamesController < ApplicationController
 
   def summary
     @title = "Game Summary"
+    @navbar_override = "summary"
     @submitted_flags = to_timeline SubmittedFlag.all.group_by {|sf| sf.updated_at.change(:min=>0)}
     hours = ((@game.stop - @game.start)/1.hours).round
-    @solved_challenges = SolvedChallenge.all
+    @solved_challenges = SolvedChallenge.includes(:challenge).all
     @solved_challenges.each do |sc|
       sc[:point_value] = sc.challenge.point_value 
       sc[:user_id] = sc[:id] = sc[:challenge_id] = nil     
     end
     @time_slices = ((@game.stop - @game.start)/1.hours).round
-    @top_players = @game.ordered_players[0..4]
+    @divisions = @game.divisions
+    @active_division = current_user && !current_user.admin? ? current_user.division : @divisions.first
     @signed_in_players = Player.where("current_sign_in_ip is not null")
     @players = Player.all
 

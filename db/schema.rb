@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160112203043) do
+ActiveRecord::Schema.define(version: 20160422181517) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -20,16 +20,36 @@ ActiveRecord::Schema.define(version: 20160112203043) do
     t.integer  "game_id"
   end
 
+  create_table "challenge_states", force: :cascade do |t|
+    t.integer  "state"
+    t.integer  "challenge_id"
+    t.integer  "division_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "challenge_states", ["challenge_id"], name: "index_challenge_states_on_challenge_id"
+  add_index "challenge_states", ["division_id"], name: "index_challenge_states_on_division_id"
+
   create_table "challenges", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
     t.integer  "point_value"
-    t.string   "state"
+    t.integer  "starting_state"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "category_id"
     t.string   "achievement_name"
   end
+
+  create_table "divisions", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "game_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "divisions", ["game_id"], name: "index_divisions_on_game_id"
 
   create_table "feed_items", force: :cascade do |t|
     t.integer  "user_id"
@@ -40,8 +60,10 @@ ActiveRecord::Schema.define(version: 20160112203043) do
     t.string   "text"
     t.integer  "point_value"
     t.integer  "flag_id"
+    t.integer  "division_id"
   end
 
+  add_index "feed_items", ["division_id"], name: "index_feed_items_on_division_id"
   add_index "feed_items", ["flag_id"], name: "index_feed_items_on_flag_id"
 
   create_table "flags", force: :cascade do |t|
@@ -98,6 +120,15 @@ ActiveRecord::Schema.define(version: 20160112203043) do
 
   add_index "rails_admin_histories", ["item", "table", "month", "year"], name: "index_rails_admin_histories"
 
+  create_table "states", force: :cascade do |t|
+    t.integer  "state"
+    t.integer  "challenge_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "states", ["challenge_id"], name: "index_states_on_challenge_id"
+
   create_table "submitted_flags", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "challenge_id"
@@ -120,7 +151,6 @@ ActiveRecord::Schema.define(version: 20160112203043) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "type"
-    t.integer  "game_id"
     t.datetime "messages_stamp"
     t.string   "tags"
     t.datetime "reset_password_sent_at"
@@ -130,6 +160,7 @@ ActiveRecord::Schema.define(version: 20160112203043) do
     t.float    "longitude"
     t.string   "affiliation"
     t.boolean  "eligible",               default: true
+    t.integer  "division_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

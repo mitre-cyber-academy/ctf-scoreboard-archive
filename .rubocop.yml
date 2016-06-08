@@ -1,0 +1,13 @@
+AllCops:
+  Exclude:
+    - 'spec/**/*'
+    - 'tmp/**/*'
+    - 'db/**/*'
+    - 'config/initializers/devise.rb'
+    - 'log/**/*'
+  TargetRubyVersion: 2.2
+Rails:
+  Enabled: true
+
+Metrics/LineLength:
+  Max: 100

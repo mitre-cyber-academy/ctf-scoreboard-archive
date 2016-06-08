@@ -1,6 +1,7 @@
 %h2 Top 5 Teams
-= render partial: "users/list", locals: { players: @top_players }
-
+%br
+= render partial: "users/divisions", locals: {divisions: @divisions, active_division: @active_division, only_top_five: true}
+%br
 %h2 Game Feed
 - if @events.count == 0
   .zero-items-text No Events
@@ -14,6 +15,7 @@
         %th
         %th Team
         %th Event
+        %th Division
         %th When
     %tbody
       - @events.each do |e|
@@ -22,9 +24,7 @@
             %i{ :class => "icon-#{e.icon}" }
           %td= link_to_unless current_user.nil?,  e.player.display_name, e.player
           %td= raw(e.description)
+          %td= e.player.division.name
           %td= e.created_at.strftime("%b %e %y, %R %Z")
 
 = paginate @events
-
-
-  

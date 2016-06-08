@@ -26,7 +26,7 @@
     - if @title
       :javascript
         $(document).ready(function() {
-          $("#nav-#{@title.downcase}").addClass("active");
+          $("#nav-#{@navbar_override || @title.downcase}").addClass("active");
         });
     
     -# auto reload

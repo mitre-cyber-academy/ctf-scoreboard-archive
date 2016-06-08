@@ -15,7 +15,8 @@
 			.attr("class", "team_location " + d3.selectAll(elementSelector).attr("tags"))	
 %h3{:class=>"muted"}
 	Top 5 Teams
-= render partial: "users/list", locals: { players: @top_players }
+%br/
+= render partial: "users/divisions", locals: {divisions: @divisions, active_division: @active_division, only_top_five: true}
 %hr
 
 - if not @game.disable_flags_an_hour_graph

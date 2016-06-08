@@ -3,9 +3,10 @@ class UsersController < ApplicationController
   before_filter :enforce_access, only: [ :download ]
   
   def index
-    @players = @game.ordered_players
+    @divisions = @game.divisions
+    @active_division = current_user && !current_user.admin? ? current_user.division : @divisions.first
     @title = "Teams"
-    @subtitle = pluralize(@players.count, "team")
+    @subtitle = pluralize(@game.players.count, "team")
   end
   
   def show
@@ -18,7 +19,7 @@ class UsersController < ApplicationController
     @adjustments = @player.score_adjustments.order("created_at DESC")
     @score = @player.score
     @title = @player.display_name
-    @subtitle = %[#{pluralize(@score, "point")} and #{pluralize(@achievements.count, "achievement")}]
+    @subtitle = %[#{pluralize(@score, "point")} and #{pluralize(@achievements.count, "achievement")} in #{@player.division.name} division]
     
       render :show
   end

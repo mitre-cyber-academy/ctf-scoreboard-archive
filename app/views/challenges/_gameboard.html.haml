@@ -1,0 +1,37 @@
+- if challenges.count == 0
+  .zero-items-text No Challenges
+- else
+  - max = 0
+  %table.table.table-bordered
+    %thead
+      %tr
+        - categories.each do |c|
+          %th{ :style => "text-align:center;width:#{1.0 / @categories.count.to_f * 100.0}%;" }= c.name
+          - max = [max, c.challenges.count].max
+    %tbody
+      - is_admin = current_user.admin?
+      - max.times do |row|
+        %tr
+          - categories.count.times do |column|
+            - challenges = categories[column].challenges
+            - if row < challenges.count
+              - challenge = challenges[row]
+              - is_solved = false
+              - style = "text-align:center;"
+              - if is_admin
+                - is_solved = challenge.is_solved?
+              - else
+                - is_solved = challenge.is_solved_by_user?(current_user)
+              - if challenge.force_closed?(division) && challenge.is_solved?
+                - style << "color:DarkOrange;"              
+              - elsif challenge.force_closed?(division)
+                - style << "color:red;"
+              - elsif is_solved
+                - style << "color:#08C;"
+              - elsif challenge.open?(division) || (is_admin && challenge.challenge_open?(division))
+                - style << "color:green;"
+              - else
+                - style << "color:gray;"                
+              %td{ style: style }= link_to_if (is_admin || challenge.open?(division)), challenge.point_value, challenge, style: "color:inherit;"
+            - else
+              %td &nbsp;

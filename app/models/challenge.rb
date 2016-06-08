@@ -1,31 +1,32 @@
 class Challenge < ActiveRecord::Base
-  
+  after_create :add_states_to_challenges
+
   belongs_to :category
+
+  has_many :challenge_states, dependent: :destroy
+
+  has_many :solved_challenges, through: :flags
   
   has_many :flags, :dependent => :destroy, inverse_of: :challenge
+  
+  validates :name, :point_value, :flags, :category_id, presence: true
 
-  validates :name, :point_value, :flags, :category_id, :state, presence: true
+  enum starting_state: ChallengeState.states
 
   accepts_nested_attributes_for :flags, :allow_destroy => true
-
-  validates :state, inclusion: %w( open closed force_closed )
 
   # Handles the ordering of all returned challenge objects.
   default_scope -> { order(:point_value, :name) }
   
   attr_accessor :submitted_flag
-
-  def state_enum
-    ['open', 'closed', 'force_closed']
-  end
   
   # This bypasses game open check and only looks at the challenge state
-  def challenge_open?
-    self.state == "open"
+  def challenge_open?(division)
+    get_state(division).eql? "open"
   end  
   
-  def open?
-    (self.challenge_open? && self.category.game.open?)
+  def open?(division)
+    (self.challenge_open?(division) && self.category.game.open?)
   end
   
   def is_solved?
@@ -33,12 +34,12 @@ class Challenge < ActiveRecord::Base
   end
 
   # Returns whether or not challenge is available to be opened.
-  def available?
-    self.state.eql? "closed"
+  def available?(division)
+    get_state(division).eql? "closed"
   end
 
-  def force_closed?
-    self.state.eql? "force_closed"
+  def force_closed?(division)
+    get_state(division).eql? "force_closed"
   end
 
   def get_current_solved_challenge(user)
@@ -59,5 +60,24 @@ class Challenge < ActiveRecord::Base
     current_challenge = get_current_solved_challenge(user)
     current_challenge.flag.api_request unless current_challenge.nil? || current_challenge.flag.nil?
   end
-  
+
+  def set_state(division, newState)
+    challengeState = challenge_states.where(division: division).first
+    challengeState.state = newState
+    challengeState.save
+  end
+
+  private
+
+  # Gets the state using a division context
+  def get_state(division)
+    challenge_states.where(division: division).first.state
+  end
+
+  def add_states_to_challenges
+    Division.all.each do |d|
+      ChallengeState.create!(challenge: self, division: d, state: self.starting_state)
+    end
+  end
+
 end
