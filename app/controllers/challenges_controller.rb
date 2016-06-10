@@ -38,7 +38,7 @@ class ChallengesController < ApplicationController
     end
 
     # handle flag
-    flag_found = @challenge.flags.select { |flag_obj| flag_obj.flag.casecmp(flag).zero? }.first
+    flag_found = @challenge.flags.find { |flag_obj| flag_obj.flag.casecmp(flag).zero? }
 
     if flag_found
 

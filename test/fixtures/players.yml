@@ -6,18 +6,22 @@ Harry:
 clark:
   email: robertclark@gmail.com
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
+  city: Tarpon Springs
 
 fegan:
   email: kylefegan@gmail.com
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
+  city: Tarpon Springs
 
 singh:
   email: bryansingh@gmail.com
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
+  city: Tarpon Springs
 
 palmer:
   email: jonpalmer@gmail.com
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
+  city: Tarpon Springs
 
 
 user_one:
