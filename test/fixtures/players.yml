@@ -2,6 +2,7 @@ Harry:
   email: harrypotter@gmail.com
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
   city: Tarpon Springs
+  id: 245242402
 
 clark:
   email: robertclark@gmail.com
