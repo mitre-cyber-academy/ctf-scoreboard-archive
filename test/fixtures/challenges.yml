@@ -1,5 +1,5 @@
 # In fixtures/plaers.yml
-Harry:
+game_one:
   name: Death_Star
   description: gain access to the death star
   point_value: 500
