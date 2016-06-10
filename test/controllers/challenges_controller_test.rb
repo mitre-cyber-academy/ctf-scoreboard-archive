@@ -2,7 +2,7 @@ require 'test_helper'
 class ChallengesController < ActionController::TestCase
   test 'check challenge name' do
     @title = challenges(:game_one)
-    puts @title.name.inspect
+    #puts @title.name.inspect
     assert_equal(true, @title.name.present?)
   end
 
