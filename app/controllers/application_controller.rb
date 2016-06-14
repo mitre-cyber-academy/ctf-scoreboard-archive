@@ -22,13 +22,14 @@ class ApplicationController < ActionController::Base
     @game = Game.instance
     raise ActiveRecord::RecordNotFound unless @game
     unless current_user.nil?
-      now = Time.now
+      now = Time.zone.now
       if now < @game.start
         flash.now[:info] = "The game will open <strong><span id=\"major-tom\"></span> on
         #{@game.start.strftime('%b %e %y, %R %Z')}</strong>.".html_safe
       elsif now < @game.stop && now > @game.stop - 1.hour
         flash.now[:info] = "The game will stop accepting submissions
-        <strong><span id=\"major-tom\"></span> on #{@game.stop.strftime('%b %e %y, %R %Z')}</strong>."
+        <strong><span id=\"major-tom\"></span> on #{@game.stop.strftime('%b %e %y, %R %Z')}
+        </strong>."
       else
         flash.now[:info] = 'The game is currently closed.' unless @game.open?
       end

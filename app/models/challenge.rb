@@ -43,7 +43,8 @@ class Challenge < ActiveRecord::Base
   end
 
   def get_current_solved_challenge(user)
-    solved_challenge = SolvedChallenge.where('challenge_id = :challenge and user_id = :user', challenge: self, user: user)
+    solved_challenge = SolvedChallenge.where('challenge_id = :challenge and user_id = :user', 
+        challenge: self, user: user)
     solved_challenge.first unless solved_challenge.nil?
   end
 

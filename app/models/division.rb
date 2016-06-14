@@ -50,7 +50,7 @@ class Division < ActiveRecord::Base
         #
         # get solved challenges
         #
-        future_date = Time.now + 100.years
+        future_date = Time.zone.now + 100.years
         a_most_recent = a.solved_challenges.order(:created_at).last
         a_date = a_most_recent ? a_most_recent.created_at : future_date
         b_most_recent = b.solved_challenges.order(:created_at).last

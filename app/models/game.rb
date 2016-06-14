@@ -45,7 +45,7 @@ class Game < ActiveRecord::Base
   # helper methods
 
   def open?
-    time = Time.now
+    time = Time.zone.now
     (start < time && time < stop)
   end
 end

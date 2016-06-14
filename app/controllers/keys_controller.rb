@@ -13,7 +13,8 @@ class KeysController < ApplicationController
     @key = Key.new(params[:key])
     @key.player = @player
     if @key.save
-      redirect_to @player, flash: { success: 'Key saved. Please wait a few minutes for ths to take effect.' }
+      redirect_to @player, flash: { success: 'Key saved. Please wait a few minutes for ths to take
+       effect.' }
     else
       flash.now[:error] = 'The key could not be saved.'
       @errors = @key.errors
@@ -24,7 +25,8 @@ class KeysController < ApplicationController
   def update
     @key = @player.keys.find(params[:id])
     if @key.update_attributes(params[:key])
-      redirect_to @player, flash: { success: 'Key saved. Please wait a few minutes for ths to take effect.' }
+      redirect_to @player, flash: { success: 'Key saved. Please wait a few minutes for ths to take
+       effect.' }
     else
       flash.now[:error] = 'The key could not be saved.'
       @errors = @key.errors
@@ -35,7 +37,8 @@ class KeysController < ApplicationController
   def destroy
     @key = @player.keys.find(params[:id])
     @key.destroy
-    redirect_to @player, flash: { success: 'The key has been removed. Please wait a few minutes for ths to take effect.' }
+    redirect_to @player, flash: { success: 'The key has been removed. Please wait a few minutes for
+     ths to take effect.' }
   end
 
   private

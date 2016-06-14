@@ -9,7 +9,8 @@ class ChallengesController < ApplicationController
     # Only exists for the purpose of providing an active tab for admins.
     @active_division = @divisions.first
     @title = 'Challenges'
-    @subtitle = %(#{pluralize(@challenges.count, 'challenge')} in #{pluralize(@categories.count, 'category')})
+    @subtitle = %(#{pluralize(@challenges.count, 'challenge')} in
+    #{pluralize(@categories.count, 'category')})
   end
 
   def show
@@ -20,11 +21,13 @@ class ChallengesController < ApplicationController
     @solved_video_url = @challenge.get_video_url_for_flag(current_user)
     # Get video URL for admins
     @solved_video_url = @admin_flag.video_url if @admin_flag
-    @solved_by = SolvedChallenge.where('challenge_id = :challenge', challenge: @challenge).order(:created_at).reverse_order
+    @solved_by = SolvedChallenge.where('challenge_id = :challenge',
+                                      challenge: @challenge).order(:created_at).reverse_order
     flash.now[:success] = 'Flag accepted!' if @solved || @admin_flag
     @title = @challenge.name
     @subtitle = pluralize(@challenge.point_value, 'point')
-    @submitted_flags = to_timeline SubmittedFlag.where('challenge_id=?', params[:id]).group_by { |sf| sf.updated_at.change(sec: 0) }
+    @submitted_flags = to_timeline SubmittedFlag.where('challenge_id=?', params[:id]).group_by 
+                                                      { |sf| sf.updated_at.change(sec: 0) }
   end
 
   def submit_flag
@@ -54,10 +57,11 @@ class ChallengesController < ApplicationController
       end
 
       if is_player
-        SolvedChallenge.create(player: current_user, challenge: @challenge, flag: flag_found, division: current_user.division)
+        SolvedChallenge.create(player: current_user, challenge: @challenge, flag: flag_found,
+                               division: current_user.division)
         redirect_to @challenge, flash: { success: 'Flag accepted!' }
       else
-        redirect_to challenge_url(@challenge, flag: flag_found), flash: { success: 'Flag accepted!' }
+        redirect_to challenge_url(@challenge, flag: flag_found), flash: {success: 'Flag accepted!'}
       end
     else
       redirect_to @challenge, flash: { error: Rails.configuration.wrong_flag_messages.sample }
