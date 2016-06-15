@@ -16,9 +16,7 @@ class SolvedChallenge < FeedItem
   end
 
   def challenge_is_open
-    unless challenge.open?(player.division)
-      errors.add(:challenge, 'must be open.')
-    end
+    errors.add(:challenge, 'must be open.') unless challenge.open?(player.division)
   end
 
   def game_is_open

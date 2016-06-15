@@ -3,14 +3,16 @@ AllCops:
     - 'spec/**/*'
     - 'tmp/**/*'
     - 'db/**/*'
-    - 'config/initializers/devise.rb'
+    - 'config/initializers/*'
     - 'log/**/*'
+    - 'test/**/*'
+    - 'vendor/**/*'
   TargetRubyVersion: 2.2
 Rails:
   Enabled: true
 
 Metrics/LineLength:
-  Max: 100
+  Max: 120
 
 Documentation:
   Enabled: false

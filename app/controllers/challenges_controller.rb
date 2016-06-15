@@ -25,8 +25,8 @@ class ChallengesController < ApplicationController
     flash.now[:success] = 'Flag accepted!' if @solved || @admin_flag
     @title = @challenge.name
     @subtitle = pluralize(@challenge.point_value, 'point')
-    @submitted_flags = to_timeline SubmittedFlag.where('challenge_id=?', params[:id]).group_by
-                                                      { |sf| sf.updated_at.change(sec: 0) }
+    @submitted_flags = to_timeline SubmittedFlag.where('challenge_id=?',
+                       params[:id]).group_by { |sf| sf.updated_at.change(sec: 0) }
   end
 
   def submit_flag
