@@ -4,7 +4,7 @@ namespace :scoreboard do
     task :add, [:player_login, :player, :password] => [:environment] do |_t, args|
       p = Game.instance.players.find_by_email((args[:player_login]).to_s)
       if p.nil?
-        p = Player.new(email: to_s(args[:player_login]), password: to_s(args[:password]), game_id: 
+        p = Player.new(email: to_s(args[:player_login]), password: to_s(args[:password]), game_id:
           Game.instance.id)
         p.display_name = to_s(args[:player])
         p.save!
@@ -74,7 +74,7 @@ namespace :scoreboard do
   namespace :certificates do
     desc 'Sync user certificates between scoreboard and VPN box'
     task copy: [:environment] do
-      system "/usr/bin/unison -auto -batch -ignorearchives /opt/keys 
+      system "/usr/bin/unison -auto -batch -ignorearchives /opt/keys
       ssh://#{Rails.configuration.jumpbox[:ip]}//opt/openvpn_keys"
     end
   end

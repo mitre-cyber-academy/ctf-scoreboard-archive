@@ -21,9 +21,9 @@
               - if is_admin
                 - is_solved = challenge.is_solved?
               - else
-                - is_solved = challenge.is_solved_by_user?(current_user)
+                - is_solved = challenge.solved_by_user?(current_user)
               - if challenge.force_closed?(division) && challenge.is_solved?
-                - style << "color:DarkOrange;"              
+                - style << "color:DarkOrange;"
               - elsif challenge.force_closed?(division)
                 - style << "color:red;"
               - elsif is_solved
@@ -31,7 +31,7 @@
               - elsif challenge.open?(division) || (is_admin && challenge.challenge_open?(division))
                 - style << "color:green;"
               - else
-                - style << "color:gray;"                
+                - style << "color:gray;"
               %td{ style: style }= link_to_if (is_admin || challenge.open?(division)), challenge.point_value, challenge, style: "color:inherit;"
             - else
               %td &nbsp;

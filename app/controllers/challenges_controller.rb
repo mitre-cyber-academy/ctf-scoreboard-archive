@@ -1,7 +1,6 @@
 class ChallengesController < ApplicationController
   before_action :enforce_access
   before_action :find_challenge, except: :index
-
   def index
     @categories = @game.categories.includes(:challenges).order(:name)
     @challenges = @game.challenges
@@ -17,7 +16,7 @@ class ChallengesController < ApplicationController
     is_admin = current_user.is_a?(Admin)
     # Accept the flag via GET request if the current user is an admin.
     @admin_flag = Flag.find(params[:flag]) if is_admin && params[:flag]
-    @solved = @challenge.is_solved_by_user?(current_user)
+    @solved = @challenge.solved_by_user?(current_user)
     @solved_video_url = @challenge.get_video_url_for_flag(current_user)
     # Get video URL for admins
     @solved_video_url = @admin_flag.video_url if @admin_flag
@@ -26,7 +25,7 @@ class ChallengesController < ApplicationController
     flash.now[:success] = 'Flag accepted!' if @solved || @admin_flag
     @title = @challenge.name
     @subtitle = pluralize(@challenge.point_value, 'point')
-    @submitted_flags = to_timeline SubmittedFlag.where('challenge_id=?', params[:id]).group_by 
+    @submitted_flags = to_timeline SubmittedFlag.where('challenge_id=?', params[:id]).group_by
                                                       { |sf| sf.updated_at.change(sec: 0) }
   end
 
