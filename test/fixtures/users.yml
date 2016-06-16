@@ -1,0 +1,67 @@
+Harry:
+  email: harrypotter@gmail.com
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
+  city: Hogwarts
+  display_name: lukeskywalker@gmail.com
+  type: Player
+
+Remus:
+  email: remus@gmail.com
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
+  city: Hogwarts
+
+weasley:
+  email: weasley@gmail.com
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
+  city: Hogwarts
+
+dumbledore:
+  email: dumbledore@gmail.com
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
+  city: Hogwarts
+
+snape:
+  email: snape@gmail.com
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
+  city: Hogwarts
+
+user_one:
+  email: user1@test.com
+  affiliation: School
+  display_name: lukeskywalker@gmail.com
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'TestPassword123') %>
+
+user_two:
+  email: user2@domain.com
+  affiliation: Industry
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'TestPassword123') %>
+
+user_three:
+  email: user@otherdomain.com
+  affiliation: Industry
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'TestPassword123') %>
+
+user_four:
+  email: user@user.com
+  affiliation: School
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'TestPassword123') %>
+
+user_five:
+  email: user2@user.com
+  affiliation: School
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'TestPassword123') %>
+
+user_six:
+  email: user3@user.com
+  affiliation: School
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'TestPassword123') %>
+
+user_seven:
+  email: user4@user.com
+  affiliation: School
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'TestPassword123') %>
+
+user_eight:
+  email: user5@user.com
+  affiliation: School
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'TestPassword123') %>
