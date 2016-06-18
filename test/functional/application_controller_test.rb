@@ -1,15 +1,25 @@
 require 'test_helper'
 
 class ApplicationControllerTest < ActionController::TestCase
-  # test 'should get signin' do
-  #   # #get :signin
-  #   # asssert_response :success
-  #   # assert_select "li"	, "Log In"
-  # end
+  def setup
+    @request.env["devise.mapping"] = Devise.mappings[:user]
+  end
 
-  # test 'should get signout' do
-  #   # #get :signout
-  #   # asssert_response :success
-  #   # assert_select "li"	, "Log Out"
-  # end
+  test 'to timeline' do
+  end
+
+  test 'enable auto reload' do
+  end
+
+  test 'load game' do
+  end
+
+  test 'load messages count' do
+  end
+
+  test 'enforce access' do
+  end
+
+  test 'after sign in path' do
+  end
 end

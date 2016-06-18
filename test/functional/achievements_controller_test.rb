@@ -1,8 +1,13 @@
 require 'test_helper'
-require 'active_record/fixtures'
 
 class AchievementsControllerTest < ActionController::TestCase
+
+  def setup
+    @request.env["devise.mapping"] = Devise.mappings[:user]
+  end
+
   test 'index' do
+    sign_in users(:player_one)
     # render
     get :index
     assert :success

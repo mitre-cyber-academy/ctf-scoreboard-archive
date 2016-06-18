@@ -1,14 +1,19 @@
 require 'test_helper'
 
-class UsersController < ActionController::TestCase
+class UsersControllerTest < ActionController::TestCase
   def setup
-    @harry = User.new(email: 'user4@test.com',
-                      password: 'TestPassword123',
-                      eligible: false,
-                      city: 'Tarpon Springs')
+    @request.env["devise.mapping"] = Devise.mappings[:user]
   end
 
-  test 'something' do
-    # asset_equal()
+  test 'index' do
+    sign_in users(:player_one)
+    get :index
+    assert :success
+  end
+
+  test 'show' do
+  end
+
+  test 'download' do
   end
 end

@@ -1,17 +1,23 @@
 require 'test_helper'
-class ChallengesController < ActionController::TestCase
-  test 'check challenge name' do
-    @title = challenges(:game_one)
-    # puts @title.name.inspect
-    assert_equal(true, @title.name.present?)
+class ChallengesControllerTest < ActionController::TestCase
+
+  def setup
+    @request.env["devise.mapping"] = Devise.mappings[:user]
   end
 
-  test 'check flag submitted' do
-    @key = submitted_flags(:flag_one)
-    assert_equal(true, @key.text.present?)
+  test 'index' do
+    sign_in users(:player_one)
+    # Render
+    get :index
+    assert :success
   end
 
-  test 'see if challenge is solved' do
-    @game = submitted_flags(:flag_one)
+  test 'show' do
+  end
+
+  test 'submit correct flag' do
+  end
+
+  test 'submit incorrect flag' do
   end
 end
