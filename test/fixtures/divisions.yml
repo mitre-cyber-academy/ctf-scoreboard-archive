@@ -3,5 +3,5 @@ division_one:
   game_id: game_one
 
 division_two:
-  name: division division two
+  name: division two
   game_id: game_one
