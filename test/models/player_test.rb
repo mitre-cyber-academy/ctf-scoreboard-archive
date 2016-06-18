@@ -13,7 +13,7 @@ class PlayerTest < ActiveSupport::TestCase
   end
 
   test 'key file name' do
-    key_phile_name = 'playeronete@' + users(:player_one).id.to_s
+    key_phile_name = 'playeronete' + users(:player_one).id.to_s
     assert_equal key_phile_name, users(:player_one).key_file_name
   end
 end
