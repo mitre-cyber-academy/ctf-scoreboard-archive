@@ -4,6 +4,8 @@ class ScoreAdjustment < FeedItem
   validates :point_value, :text, presence: true
   validate :point_value_is_not_zero
 
+  # rubocop:disable MethodLength
+  # TODO: Rewrite this.
   def description
     color = ''
     verb = ''
@@ -17,6 +19,7 @@ class ScoreAdjustment < FeedItem
     end
     %(Score was #{verb} by <span style="color:#{color};">#{pluralize(points.abs, 'point')}</span>)
   end
+  # rubocop:enable MethodLength
 
   def icon
     (point_value < 0) ? 'chevron-down' : 'chevron-up'

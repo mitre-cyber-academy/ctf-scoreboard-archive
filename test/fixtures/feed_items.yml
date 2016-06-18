@@ -1,0 +1,10 @@
+feed_item_one:
+  point_value: 200
+  division_id: division_one
+  flag_id: flag_one
+  type: ScoreAdjustment
+
+feed_item_two:
+  point_value: -100
+  division_id: division_two
+  type: ScoreAdjustment
