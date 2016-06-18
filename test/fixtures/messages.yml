@@ -1,0 +1,5 @@
+message_one:
+  user_id: player_one
+  game_id: game_one
+  text: message one text
+  title: message one title

@@ -1,2 +1,4 @@
-flag_one:
-  text: MCA-1E347FAD
+submitted_flag_one:
+  user_id: player_one
+  challenge_id: challenge_one
+  text: submitted flag one

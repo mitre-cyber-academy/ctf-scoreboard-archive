@@ -1,4 +1,7 @@
-Harry:
-  name: Death_Star
-  description: gain access to the death star
-  disable_vpn: false
+game_one:
+  name: game one
+  start: <%= Time.now %>
+  stop: <%= Time.now + 2 %>
+  description: game one description
+  tos: game one tos
+  irc: game one irc

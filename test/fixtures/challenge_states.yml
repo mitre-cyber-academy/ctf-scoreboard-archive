@@ -1,2 +1,8 @@
-Harry:
-  state: 3  
+challenge_state_one:
+  state: 0
+
+challenge_state_two:
+  state: 2
+
+challenge_state_three:
+  state: 3

@@ -1,7 +1,18 @@
-# In fixtures/plaers.yml
-game_one:
-  name: Death_Star
-  description: gain access to the death star
-  point_value: 500
-  category_id: 4
-  achievement_name: good samaritan
+challenge_one:
+  name: challenge_one
+  description: challenge one description
+  point_value: 100
+  starting_state: 0
+
+challenge_two:
+  name: challenge_two
+  description: challenge two description
+  point_value: 200
+  starting_state: 1
+
+challenge_three:
+  name: challenge_three
+  description: challenge three description
+  point_value: 300
+  starting_state: 1
+  achievement_name: challenge three achievement
