@@ -1,0 +1,12 @@
+feed_item_one:
+  user_id: player_one
+  point_value: 200
+  text: test
+  type: ScoreAdjustment
+  division_id: 2
+
+feed_item_two:
+  user_id: player_two.id
+  point_value: -100
+  text: test
+  type: ScoreAdjustment
