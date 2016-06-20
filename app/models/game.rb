@@ -31,15 +31,11 @@ class Game < ActiveRecord::Base
 
   def instance_is_singleton
     singleton = Game.instance
-    if self != singleton && !singleton.nil?
-      errors.add(:base, 'You may not create more than one game.')
-    end
+    errors.add(:base, I18n.t('game.too_many')) if self != singleton && !singleton.nil?
   end
 
   def order_of_start_and_stop_date
-    unless start < stop
-      errors.add(:base, 'The start date must be before the end date.')
-    end
+    errors.add(:base, I18n.t('game.date_mismatch')) unless start < stop
   end
 
   # helper methods

@@ -15,6 +15,6 @@ class ChallengeTest < ActiveSupport::TestCase
   # end
 
   test 'is challenge solved' do
-    assert_equal false, challenges(:challenge_one).is_solved?
+    assert_equal false, challenges(:challenge_one).solved?
   end
 end

@@ -29,7 +29,7 @@ class Challenge < ActiveRecord::Base
     (challenge_open?(division) && category.game.open?)
   end
 
-  def is_solved?
+  def solved?
     (SolvedChallenge.where('challenge_id = :challenge', challenge: self).count > 0)
   end
 
@@ -44,7 +44,7 @@ class Challenge < ActiveRecord::Base
 
   def get_current_solved_challenge(user)
     solved_challenge = SolvedChallenge.where('challenge_id = :challenge and user_id = :user',
-        challenge: self, user: user)
+                                             challenge: self, user: user)
     solved_challenge.first unless solved_challenge.nil?
   end
 
@@ -62,17 +62,17 @@ class Challenge < ActiveRecord::Base
     current_challenge.flag.api_request unless current_challenge.nil? || current_challenge.flag.nil?
   end
 
-  def set_state(division, newState)
-    challengeState = challenge_states.where(division: division).first
-    challengeState.state = newState
-    challengeState.save
+  def set_state(division, new_state)
+    challenge_state = chalelnge_states.find_by(division: division)
+    challenge_state.state = new_state
+    challenge_state.save
   end
 
   private
 
   # Gets the state using a division context
   def get_state(division)
-    challenge_states.where(division: division).first.state
+    challenge_states.find_by(division: division).state
   end
 
   def add_states_to_challenges

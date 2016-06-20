@@ -8,3 +8,5 @@ en:
     date_mismatch: 'The start date must be before the end date.'
   flag:
     accepted: 'Flag accepted!'
+  api:
+    http_error: 'An HTTP error occured. No actions were performed in Cyberville, but points were awarded.'

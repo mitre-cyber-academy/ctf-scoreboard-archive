@@ -3,8 +3,7 @@ class UsersController < ApplicationController
 
   def index
     @divisions = @game.divisions
-    @active_division = current_user && !current_user.admin? ?
-                       current_user.division : @divisions.first
+    @active_division = current_user && !current_user.admin? ? current_user.division : @divisions.first
     @title = 'Teams'
     @subtitle = pluralize(@game.players.count, 'team')
   end
@@ -14,16 +13,14 @@ class UsersController < ApplicationController
     @players = [@player]
 
     @solved_challenges = @player.solved_challenges.order('created_at DESC')
-    @submitted_flags = to_timeline SubmittedFlag.where(
-                          'user_id=?', params[:id]
-                       ).group_by { |sf| sf.updated_at.change(sec: 0) }
+    @submitted_flags = to_timeline SubmittedFlag.where('user_id=?',
+                                                       params[:id]).group_by { |sf| sf.updated_at.change(sec: 0) }
     @achievements = @player.achievements.order('created_at DESC')
     @adjustments = @player.score_adjustments.order('created_at DESC')
     @score = @player.score
     @title = @player.display_name
-    @subtitle = %(#{pluralize(@score, 'point')} and #{pluralize(@achievements.count,
-                 'achievement')} in #{@player.division.name} division)
-
+    # This line is long because we need to NOT create these types of things in the controller.
+    @subtitle = %(#{pluralize(@score, 'point')} and #{pluralize(@achievements.count, 'achievement')} in #{@player.division.name} division)
     render :show
   end
 

@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  protect_from_forgery :with => :exception
+  protect_from_forgery with: :exception
 
   include SessionsHelper
   include ActionView::Helpers::TextHelper
@@ -31,7 +31,7 @@ class ApplicationController < ActionController::Base
         <strong><span id=\"major-tom\"></span> on #{@game.stop.strftime('%b %e %y, %R %Z')}
         </strong>."
       else
-        flash.now[:info] = 'The game is currently closed.' unless @game.open?
+        flash.now[:info] = I18n.t('game.closed') unless @game.open?
       end
     end
   end

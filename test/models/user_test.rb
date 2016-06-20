@@ -6,12 +6,12 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test 'set password' do
-    assert_nil users(:player_one).set_password
+    assert_nil users(:player_one).password_no_args
   end
 
   test 'set password with value' do
     password = 'NewTestPassword123'
-    assert_nil users(:player_one).set_password=()
-    assert_equal password, users(:player_one).set_password=(password)
+    assert_nil users(:player_one).password('')
+    assert_equal password, users(:player_one).password(password)
   end
 end
