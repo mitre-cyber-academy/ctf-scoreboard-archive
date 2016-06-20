@@ -13,7 +13,6 @@ class ScoreAdjustmentTest < ActiveSupport::TestCase
   end
 
   test 'build icon' do
-    icon_test = feed_items(:feed_item_one)
     assert_equal 'chevron-up', feed_items(:feed_item_one).icon
     assert_equal 'chevron-down', feed_items(:feed_item_two).icon
   end
