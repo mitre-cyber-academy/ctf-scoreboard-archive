@@ -1,3 +1,5 @@
+require 'test_helper'
+
 class UserTest < ActiveSupport::TestCase
   test 'is an admin' do
     assert_equal true, users(:admin_one).admin?

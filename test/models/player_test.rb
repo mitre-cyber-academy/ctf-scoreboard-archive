@@ -1,3 +1,5 @@
+require 'test_helper'
+
 class PlayerTest < ActiveSupport::TestCase
   test 'score' do
     assert_equal 0, users(:player_one).score

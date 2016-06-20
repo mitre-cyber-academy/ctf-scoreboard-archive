@@ -44,6 +44,6 @@ class Player < User
   private
 
   def touch_file
-    `touch /opt/keys/#{key_file_name}`
+    system("touch /opt/keys/#{key_file_name}")
   end
 end

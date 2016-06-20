@@ -1,3 +1,5 @@
+require 'test_helper'
+
 class ScoreAdjustmentTest < ActiveSupport::TestCase
   include ActionView::Helpers::TextHelper
 

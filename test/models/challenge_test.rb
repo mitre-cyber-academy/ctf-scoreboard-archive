@@ -1,3 +1,5 @@
+require 'test_helper'
+
 class ChallengeTest < ActiveSupport::TestCase
   # test 'challenge open' do
   #   challenge = challenges(:challenge_one)
