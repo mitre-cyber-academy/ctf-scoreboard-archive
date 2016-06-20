@@ -1,4 +1,5 @@
 require 'test_helper'
+
 class ChallengesControllerTest < ActionController::TestCase
 
   def setup

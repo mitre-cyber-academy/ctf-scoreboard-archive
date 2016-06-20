@@ -1,3 +1,5 @@
+require 'test_helper'
+
 class DivisionTest < ActiveSupport::TestCase
   test 'ordered players' do
   end

@@ -1,3 +1,5 @@
+require 'test_helper'
+
 class GameTest < ActiveSupport::TestCase
   test 'instance is singleton' do
   end

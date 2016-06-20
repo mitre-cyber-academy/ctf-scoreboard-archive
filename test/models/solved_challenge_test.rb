@@ -1,3 +1,5 @@
+require 'test_helper'
+
 class SolvedChallengeTest < ActiveSupport::TestCase
 
   test 'description' do
