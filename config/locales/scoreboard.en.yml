@@ -1,0 +1,12 @@
+# Sample localization file for English. Add more files in this directory for other locales.
+# See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+
+en:
+  game:
+    closed: 'The game is currently closed.'
+    too_many: 'You may not create more than one game.'
+    date_mismatch: 'The start date must be before the end date.'
+  flag:
+    accepted: 'Flag accepted!'
+  api:
+    http_error: 'An HTTP error occured. No actions were performed in Cyberville, but points were awarded.'

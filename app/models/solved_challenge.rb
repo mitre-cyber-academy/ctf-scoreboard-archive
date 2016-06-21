@@ -20,9 +20,7 @@ class SolvedChallenge < FeedItem
   end
 
   def game_is_open
-    unless challenge.category.game.open?
-      errors.add(:base, 'The game must be open.')
-    end
+    errors.add(:base, 'The game must be open.') unless challenge.category.game.open?
   end
 
   def user_has_not_solved_challenge
@@ -43,8 +41,6 @@ class SolvedChallenge < FeedItem
     challenge = self.challenge
     category = challenge.category
     challenge = category.next_challenge(challenge)
-    if challenge && challenge.available?(player.division)
-      challenge.set_state(player.division, 'open')
-    end
+    challenge.set_state(player.division, 'open') if challenge && challenge.available?(player.division)
   end
 end

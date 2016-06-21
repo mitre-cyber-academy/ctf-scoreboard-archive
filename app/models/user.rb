@@ -13,11 +13,11 @@ class User < ActiveRecord::Base
     is_a?(Admin)
   end
 
-  def set_password
+  def password_no_args
     nil
   end
 
-  def set_password=(value)
+  def password(value)
     return nil if value.blank?
     self.password = value
     self.password_confirmation = value

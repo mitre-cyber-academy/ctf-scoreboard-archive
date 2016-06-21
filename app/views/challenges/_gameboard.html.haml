@@ -19,10 +19,10 @@
               - is_solved = false
               - style = "text-align:center;"
               - if is_admin
-                - is_solved = challenge.is_solved?
+                - is_solved = challenge.solved?
               - else
                 - is_solved = challenge.solved_by_user?(current_user)
-              - if challenge.force_closed?(division) && challenge.is_solved?
+              - if challenge.force_closed?(division) && challenge.solved?
                 - style << "color:DarkOrange;"
               - elsif challenge.force_closed?(division)
                 - style << "color:red;"

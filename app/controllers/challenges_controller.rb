@@ -21,12 +21,12 @@ class ChallengesController < ApplicationController
     # Get video URL for admins
     @solved_video_url = @admin_flag.video_url if @admin_flag
     @solved_by = SolvedChallenge.where('challenge_id = :challenge',
-                                      challenge: @challenge).order(:created_at).reverse_order
-    flash.now[:success] = 'Flag accepted!' if @solved || @admin_flag
+                                       challenge: @challenge).order(:created_at).reverse_order
+    flash.now[:success] = I18.t('flag.accepted') if @solved || @admin_flag
     @title = @challenge.name
     @subtitle = pluralize(@challenge.point_value, 'point')
     @submitted_flags = to_timeline SubmittedFlag.where('challenge_id=?',
-                       params[:id]).group_by { |sf| sf.updated_at.change(sec: 0) }
+                                                       params[:id]).group_by { |sf| sf.updated_at.change(sec: 0) }
   end
 
   def submit_flag
@@ -51,16 +51,22 @@ class ChallengesController < ApplicationController
       Thread.new do
         begin
           Net::HTTP.get(URI.parse(@api_url)) if @api_url
-        rescue Exception
+        # Could list all the execeptions, most advice advocates to move
+        # to a 3rd party HTTP library that has errors derived from a common
+        # superclass
+        rescue StandardError
+          redirect_to @challenge, alert: I18n.t('http_error')
         end
       end
 
       if is_player
         SolvedChallenge.create(player: current_user, challenge: @challenge, flag: flag_found,
                                division: current_user.division)
-        redirect_to @challenge, flash: { success: 'Flag accepted!' }
+        redirect_to @challenge, notice: I18n.t('flag.accepted')
       else
-        redirect_to challenge_url(@challenge, flag: flag_found), flash: {success: 'Flag accepted!'}
+        redirect_to challenge_url(@challenge, flag: flag_found), notice: I18n.t('flag.accepted')
+        # flash.now[:notice] = I18n.t('teams.full_team') if team_captain? && !team_editable?
+        # redirect_to @team, notice: I18n.t('teams.create_successful')
       end
     else
       redirect_to @challenge, flash: { error: Rails.configuration.wrong_flag_messages.sample }
@@ -71,8 +77,6 @@ class ChallengesController < ApplicationController
 
   def find_challenge
     @challenge = @game.challenges.find(params[:id])
-    if !current_user.admin? && !@challenge.open?(current_user.division)
-      raise ActiveRecord::RecordNotFound
-    end
+    raise ActiveRecord::RecordNotFound if !current_user.admin? && !@challenge.open?(current_user.division)
   end
 end

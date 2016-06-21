@@ -3,14 +3,14 @@ json.array!(@game.players) do |json, player|
   json.tags player.tags
 
   # feed items
-  json.feed player.feed_items.order('created_at') do |json, item|
-    json.created_at item.created_at
-    json.type item.type
-    json.text item.text
-    json.points item.point_value
+  json.feed player.feed_items.order('created_at') do |jayson, item|
+    jayson.created_at item.created_at
+    jayson.type item.type
+    jayson.text item.text
+    jayson.points item.point_value
     unless item.challenge.nil?
-      json.text item.challenge.name
-      json.points item.challenge.point_value
+      jayson.text item.challenge.name
+      jayson.points item.challenge.point_value
     end
   end
 end

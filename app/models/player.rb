@@ -27,11 +27,8 @@ class Player < User
   end
 
   def display_name
-    if eligible
-      return self[:display_name]
-    else
-      return self[:display_name] + ' (ineligible)'
-    end
+    return self[:display_name] if eligible
+    return self[:display_name] + ' (ineligible)' unless eligible
   end
 
   # Grab the first 10 characters from the email and append the users ID.

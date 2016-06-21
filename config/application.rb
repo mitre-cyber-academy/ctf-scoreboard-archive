@@ -5,7 +5,7 @@ require 'rails/all'
 # If you have a Gemfile, require the default gems, the ones in the
 # current environment and also include :assets gems if in development
 # or test environments.
-Bundler.require *Rails.groups(:assets) if defined?(Bundler)
+Bundler.require(*Rails.groups) if defined?(Bundler)
 
 module Scoreboard
   class Application < Rails::Application
