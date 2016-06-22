@@ -17,7 +17,7 @@ class User < ActiveRecord::Base
     nil
   end
 
-  def password(value)
+  def change_password(value)
     return nil if value.blank?
     self.password = value
     self.password_confirmation = value

@@ -38,7 +38,7 @@ RailsAdmin.config do |config|
   end
 
   config.model Player do
-    configure :set_password
+    configure :change_password
     edit do
       field :email do
         label 'Login'
@@ -53,8 +53,8 @@ RailsAdmin.config do |config|
       field :city
       field :affiliation
       field :eligible
-      field :set_password
-      field :set_password do
+      field :change_password
+      field :change_password do
         label 'Password'
       end
     end
