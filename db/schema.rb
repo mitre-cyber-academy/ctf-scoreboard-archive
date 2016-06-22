@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20160422181517) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "categories", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at"
@@ -28,8 +31,8 @@ ActiveRecord::Schema.define(version: 20160422181517) do
     t.datetime "updated_at",   null: false
   end
 
-  add_index "challenge_states", ["challenge_id"], name: "index_challenge_states_on_challenge_id"
-  add_index "challenge_states", ["division_id"], name: "index_challenge_states_on_division_id"
+  add_index "challenge_states", ["challenge_id"], name: "index_challenge_states_on_challenge_id", using: :btree
+  add_index "challenge_states", ["division_id"], name: "index_challenge_states_on_division_id", using: :btree
 
   create_table "challenges", force: :cascade do |t|
     t.string   "name"
@@ -49,7 +52,7 @@ ActiveRecord::Schema.define(version: 20160422181517) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "divisions", ["game_id"], name: "index_divisions_on_game_id"
+  add_index "divisions", ["game_id"], name: "index_divisions_on_game_id", using: :btree
 
   create_table "feed_items", force: :cascade do |t|
     t.integer  "user_id"
@@ -63,8 +66,8 @@ ActiveRecord::Schema.define(version: 20160422181517) do
     t.integer  "division_id"
   end
 
-  add_index "feed_items", ["division_id"], name: "index_feed_items_on_division_id"
-  add_index "feed_items", ["flag_id"], name: "index_feed_items_on_flag_id"
+  add_index "feed_items", ["division_id"], name: "index_feed_items_on_division_id", using: :btree
+  add_index "feed_items", ["flag_id"], name: "index_feed_items_on_flag_id", using: :btree
 
   create_table "flags", force: :cascade do |t|
     t.integer  "challenge_id"
@@ -75,7 +78,7 @@ ActiveRecord::Schema.define(version: 20160422181517) do
     t.datetime "updated_at",   null: false
   end
 
-  add_index "flags", ["challenge_id"], name: "index_flags_on_challenge_id"
+  add_index "flags", ["challenge_id"], name: "index_flags_on_challenge_id", using: :btree
 
   create_table "games", force: :cascade do |t|
     t.string   "name"
@@ -113,12 +116,12 @@ ActiveRecord::Schema.define(version: 20160422181517) do
     t.integer  "item"
     t.string   "table"
     t.integer  "month",      limit: 2
-    t.integer  "year",       limit: 5
+    t.integer  "year",       limit: 8
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "rails_admin_histories", ["item", "table", "month", "year"], name: "index_rails_admin_histories"
+  add_index "rails_admin_histories", ["item", "table", "month", "year"], name: "index_rails_admin_histories", using: :btree
 
   create_table "states", force: :cascade do |t|
     t.integer  "state"
@@ -127,7 +130,7 @@ ActiveRecord::Schema.define(version: 20160422181517) do
     t.datetime "updated_at",   null: false
   end
 
-  add_index "states", ["challenge_id"], name: "index_states_on_challenge_id"
+  add_index "states", ["challenge_id"], name: "index_states_on_challenge_id", using: :btree
 
   create_table "submitted_flags", force: :cascade do |t|
     t.integer  "user_id"
@@ -163,6 +166,6 @@ ActiveRecord::Schema.define(version: 20160422181517) do
     t.integer  "division_id"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
 
 end
