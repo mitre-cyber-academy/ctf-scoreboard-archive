@@ -14,6 +14,10 @@ This repository is for the scoreboard used to run MITRE capture the flag competi
 3. Run `bundle install`
 4. Run `bundle exec rails s`
 5. Open the webpage shown in your terminal from the last command in your browser.
+6. Install postgres to your system
+8. Run 'bundle exec rake db:create'
+9. Run 'bundle exec rake db:schema:load'
+
 
 ### How do I contribute?
 
