@@ -1,7 +1,7 @@
 player_one:
   email: playerone@test.com
   encrypted_password: <%= Devise::Encryptor.digest(User, 'TestPassword123') %>
-  division_id: division_one
+  division: division_one
   display_name: Player One
   type: Player
 
@@ -9,14 +9,23 @@ player_two:
   email: playertwo@test.com
   encrypted_password: <%= Devise::Encryptor.digest(User, 'TestPassword123') %>
   division_id: division_two
+  display_name: Player Two
   type: Player
 
 player_three:
   email: playerthree@test.com
   encrypted_password: <%= Devise::Encryptor.digest(User, 'TestPassword123') %>
-  division_id: division_one
+  division: division_one
   display_name: Player Three
   eligible: false
+  type: Player
+
+player_four:
+  email: playerfour@test.com
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'TestPassword123') %>
+  division: division_one
+  display_name: Player Four
+  eligible: true
   type: Player
 
 admin_one:

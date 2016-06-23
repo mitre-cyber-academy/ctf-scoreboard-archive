@@ -1,4 +1,4 @@
-class Division < ActiveRecord::Base
+  class Division < ActiveRecord::Base
   after_create :add_states_to_challenges
 
   belongs_to :game
@@ -14,12 +14,18 @@ class Division < ActiveRecord::Base
   validates :name, presence: true
 
   def ordered_players(only_top_five = false)
+    # They are eligible if the boolean is true
     eligible_players = filter_and_sort_players(eligible: true)
+    # They are ineligible if the boolean is false
     ineligible_players = filter_and_sort_players(eligible: false)
+    # Take the eligible players [in whole competition] and appends the ineligible players to the end of the array of eligible players
     eligible_players.push(*ineligible_players)
+    # if true return the first five in array
     if only_top_five
+      # Then take the first 5 elements in array
       eligible_players[0..4]
     else
+      # if not eligible then ...
       eligible_players
     end
   end
