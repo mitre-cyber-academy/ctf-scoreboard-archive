@@ -123,15 +123,6 @@ ActiveRecord::Schema.define(version: 20160422181517) do
 
   add_index "rails_admin_histories", ["item", "table", "month", "year"], name: "index_rails_admin_histories", using: :btree
 
-  create_table "states", force: :cascade do |t|
-    t.integer  "state"
-    t.integer  "challenge_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-  end
-
-  add_index "states", ["challenge_id"], name: "index_states_on_challenge_id", using: :btree
-
   create_table "submitted_flags", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "challenge_id"
@@ -168,4 +159,10 @@ ActiveRecord::Schema.define(version: 20160422181517) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
 
+  add_foreign_key "challenge_states", "challenges"
+  add_foreign_key "challenge_states", "divisions"
+  add_foreign_key "divisions", "games"
+  add_foreign_key "feed_items", "divisions"
+  add_foreign_key "feed_items", "flags"
+  add_foreign_key "flags", "challenges"
 end
