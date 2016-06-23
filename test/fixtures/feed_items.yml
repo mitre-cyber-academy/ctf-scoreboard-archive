@@ -1,12 +1,17 @@
 feed_item_one:
-  user_id: player_one
+  player: player_one
   point_value: 200
   text: test
-  type: ScoreAdjustment
-  division_id: division_two
+  type: Achievement
 
 feed_item_two:
-  user_id: player_two.id
+  player: player_two
   point_value: -100
   text: test
-  type: ScoreAdjustment
+  type: Achievement
+
+feed_item_three:
+  player: player_one
+  point_value: 400
+  text: test
+  type: Achievement

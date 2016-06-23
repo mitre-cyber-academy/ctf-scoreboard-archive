@@ -1,0 +1,6 @@
+binary:
+  name: toster
+binary_two:
+  name: oven
+binary:
+  name: stove

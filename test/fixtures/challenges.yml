@@ -7,12 +7,22 @@ challenge_one:
 challenge_two:
   name: challenge_two
   description: challenge two description
-  point_value: 200
-  starting_state: 1
+  point_value: 400
+  starting_state: closed
+  category: binary
 
 challenge_three:
   name: challenge_three
   description: challenge three description
   point_value: 300
-  starting_state: 1
+  category: binary
+  starting_state: solved
+  achievement_name: challenge three achievement
+
+challenge_four:
+  name: challenge_four
+  description: challenge two description
+  point_value: 200
+  starting_state: open
+  category: binary
   achievement_name: challenge three achievement
