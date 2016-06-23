@@ -1,11 +1,11 @@
-feed_item_one:
+score_adjustment_one:
   user_id: player_one
   point_value: 200
   text: test
   type: ScoreAdjustment
   division_id: 2
 
-feed_item_two:
+score_adjustment_two:
   user_id: player_two.id
   point_value: -100
   text: test
