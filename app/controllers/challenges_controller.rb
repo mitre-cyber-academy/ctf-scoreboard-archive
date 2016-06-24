@@ -9,24 +9,22 @@ class ChallengesController < ApplicationController
     @active_division = @divisions.first
     @title = 'Challenges'
     @subtitle = %(#{pluralize(@challenges.count, 'challenge')} in
-    #{pluralize(@categories.count, 'category')})
+                #{pluralize(@categories.count, 'category')})
   end
 
   def show
     is_admin = current_user.is_a?(Admin)
     # Accept the flag via GET request if the current user is an admin.
-    @admin_flag = Flag.find(params[:flag]) if is_admin && params[:flag]
+    @admin_flag = @challenge.flags.find(params[:flag]) if is_admin && params[:flag]
     @solved = @challenge.solved_by_user?(current_user)
     @solved_video_url = @challenge.get_video_url_for_flag(current_user)
     # Get video URL for admins
     @solved_video_url = @admin_flag.video_url if @admin_flag
-    @solved_by = SolvedChallenge.where('challenge_id = :challenge',
-                                       challenge: @challenge).order(:created_at).reverse_order
+    @solved_by = @challenge.solved_challenges.order(:created_at).reverse_order
     flash.now[:success] = I18.t('flag.accepted') if @solved || @admin_flag
     @title = @challenge.name
     @subtitle = pluralize(@challenge.point_value, 'point')
-    @submitted_flags = to_timeline SubmittedFlag.where('challenge_id=?',
-                                                       params[:id]).group_by { |sf| sf.updated_at.change(sec: 0) }
+    @submitted_flags = to_timeline @challenge.submitted_flags.group_by { |sf| sf.updated_at.change(sec: 0) }
   end
 
   def submit_flag

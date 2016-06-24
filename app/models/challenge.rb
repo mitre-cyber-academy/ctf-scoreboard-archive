@@ -7,6 +7,8 @@ class Challenge < ActiveRecord::Base
 
   has_many :solved_challenges, through: :flags
 
+  has_many :submitted_flags
+
   has_many :flags, dependent: :destroy, inverse_of: :challenge
 
   validates :name, :point_value, :flags, :category_id, presence: true
