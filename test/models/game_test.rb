@@ -7,9 +7,10 @@ class GameTest < ActiveSupport::TestCase
   test 'order of start and stop date' do
   end
 
-  test 'game open' do
-  end
-
   test 'open' do
+    game = games(:game_one)
+    game_start = game.start
+    game_stop = game.stop
+    assert_equal true, game.open?
   end
 end
