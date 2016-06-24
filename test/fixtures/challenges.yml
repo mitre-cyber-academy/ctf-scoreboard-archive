@@ -9,13 +9,13 @@ challenge_two:
   description: challenge two description
   point_value: 400
   starting_state: closed
-  category: binary
+  category: binary_one
 
 challenge_three:
   name: challenge_three
   description: challenge three description
   point_value: 300
-  category: binary
+  category: binary_one
   starting_state: solved
   achievement_name: challenge three achievement
 
@@ -24,5 +24,5 @@ challenge_four:
   description: challenge two description
   point_value: 200
   starting_state: open
-  category: binary
+  category: binary_one
   achievement_name: challenge three achievement

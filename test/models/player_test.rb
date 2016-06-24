@@ -1,10 +1,10 @@
 require 'test_helper'
 
 class PlayerTest < ActiveSupport::TestCase
-  test 'score' do
-    assert_equal 0, users(:player_one).score
-    # Figure out how to attach feed items/scoreadjustment to players
-    # assert_equal 100, users(:player_two).score
+  test 'score method returns proper value' do
+    team_one = users(:player_one)
+    # Player 1 has a 200 point score adjustment added from the fixtures
+    assert_equal 200, team_one.score
   end
 
   test 'display name' do

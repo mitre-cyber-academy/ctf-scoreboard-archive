@@ -15,3 +15,15 @@ feed_item_three:
   point_value: 400
   text: test
   type: Achievement
+
+score_adjustment_one:
+  player: player_one
+  point_value: 200
+  text: Helped us fix a bug in a challenge
+  type: ScoreAdjustment
+
+score_adjustment_two:
+  player: player_two
+  point_value: -100
+  text: Broke a challenge
+  type: ScoreAdjustment

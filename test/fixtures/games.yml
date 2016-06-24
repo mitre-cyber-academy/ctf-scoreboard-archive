@@ -1,7 +1,7 @@
 game_one:
   name: game one
   start: <%= Time.now %>
-  stop: <%= Time.now + 2 %>
+  stop: <%= Time.now + 10.hours %>
   description: game one description
   tos: game one tos
   irc: game one irc

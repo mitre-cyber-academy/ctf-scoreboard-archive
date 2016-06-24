@@ -1,4 +1,4 @@
 submitted_flag_one:
-  user_id: player_one
-  challenge_id: challenge_one
+  player: player_one
+  challenge: challenge_one
   text: submitted flag one

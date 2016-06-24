@@ -10,8 +10,7 @@ class Category < ActiveRecord::Base
   # to self.challenges in is set in the challenges model.
   def next_challenge(challenge)
     # Order of challenges is handled by default scope in challenge.rb
-    challenges = self.challenges
     index = challenges.find_index(challenge)
-    challenges.at(index + 1)
+    challenges.at(index + 1) if !index.nil?
   end
 end

@@ -1,7 +1,7 @@
 division_one:
   name: division one
-  game_id: game_one
+  game: game_one
 
 division_two:
   name: division two
-  game_id: game_one
+  game: game_one

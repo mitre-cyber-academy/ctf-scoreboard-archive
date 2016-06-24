@@ -1,5 +1,5 @@
 flag_one:
-  challenge_id: challenge_one
+  challenge: challenge_one
   flag: flag one
   api_request: flag_one api request
   video_url: flag_one video url
