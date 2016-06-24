@@ -8,5 +8,6 @@ class AchievementTest < ActiveSupport::TestCase
   end
 
   test 'icon' do
+
   end
 end
