@@ -48,4 +48,3 @@ Icon?
 *.tmproj
 *.tmproject
 tmtags
-/config/secrets.yml
