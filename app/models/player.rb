@@ -5,7 +5,6 @@ class Player < User
   has_many :solved_challenges, foreign_key: :user_id
   has_many :score_adjustments, foreign_key: :user_id
   has_many :achievements, foreign_key: :user_id
-  has_many :keys, foreign_key: :user_id, dependent: :delete_all
 
   validates :division_id, :display_name, presence: true
 
