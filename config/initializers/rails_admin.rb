@@ -15,12 +15,6 @@ RailsAdmin.config do |config|
     visible false
   end
 
-  config.model Key do
-    list do
-      fields :player, :name, :updated_at
-    end
-  end
-
   config.model Admin do
     edit do
       field :email do
