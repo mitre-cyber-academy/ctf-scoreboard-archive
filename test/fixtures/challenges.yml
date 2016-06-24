@@ -2,27 +2,28 @@ challenge_one:
   name: challenge_one
   description: challenge one description
   point_value: 100
-  starting_state: 0
+  starting_state: <%= ChallengeState.states[:open] %>
+  category: category_one
 
 challenge_two:
   name: challenge_two
   description: challenge two description
   point_value: 400
-  starting_state: closed
-  category: binary_one
+  starting_state: <%= ChallengeState.states[:closed] %>
+  category: category_one
 
 challenge_three:
   name: challenge_three
   description: challenge three description
   point_value: 300
-  category: binary_one
-  starting_state: solved
+  category: category_two
+  starting_state: <%= ChallengeState.states[:force_closed] %>
   achievement_name: challenge three achievement
 
 challenge_four:
   name: challenge_four
   description: challenge two description
   point_value: 200
-  starting_state: open
-  category: binary_one
+  starting_state: <%= ChallengeState.states[:open] %>
+  category: category_two
   achievement_name: challenge three achievement

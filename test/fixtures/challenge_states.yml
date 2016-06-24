@@ -3,27 +3,37 @@ challenge_state_one_d1:
   challenge: challenge_one
   division: division_one
 
-challenge_state_two_d1:
-  state: 2
-  challenge: challenge_two
-  division: division_one
-
-challenge_state_three_d1:
-  state: 3
-  challenge: challenge_three
-  division: division_one
-
 challenge_state_one_d2:
   state: 0
   challenge: challenge_one
   division: division_two
+
+challenge_state_two_d1:
+  state: 2
+  challenge: challenge_two
+  division: division_one
 
 challenge_state_two_d2:
   state: 2
   challenge: challenge_two
   division: division_two
 
-challenge_state_three_d3:
+challenge_state_three_d1:
   state: 3
   challenge: challenge_three
+  division: division_one
+
+challenge_state_three_d2:
+  state: 3
+  challenge: challenge_three
+  division: division_two
+
+challenge_state_four_d1:
+  state: 3
+  challenge: challenge_four
+  division: division_one
+
+challenge_state_four_d2:
+  state: 3
+  challenge: challenge_four
   division: division_two

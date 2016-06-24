@@ -1,6 +1,6 @@
-binary_one:
-  name: toster
-binary_two:
-  name: oven
-binary_three:
-  name: stove
+category_one:
+  name: binary
+  game: game_one
+category_two:
+  name: forensics
+  game: game_one
