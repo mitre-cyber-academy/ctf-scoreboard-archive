@@ -16,16 +16,16 @@ class SolvedChallenge < FeedItem
   end
 
   def challenge_is_open
-    errors.add(:challenge, 'must be open.') unless challenge.open?(player.division)
+    errors.add(:challenge, I18n.t('challenge.not_open')) unless challenge.open?(player.division)
   end
 
   def game_is_open
-    errors.add(:base, 'The game must be open.') unless challenge.category.game.open?
+    errors.add(:base, I18n.t('challenge.game_not_open')) unless challenge.category.game.open?
   end
 
   def user_has_not_solved_challenge
     if player.solved_challenges.where('challenge_id = ?', challenge.id).count > 0
-      errors.add(:base, 'This player has already solved this challenge.')
+      errors.add(:base, I18n.t('challenge.already_solved'))
     end
   end
 

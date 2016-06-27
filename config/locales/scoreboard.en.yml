@@ -10,3 +10,7 @@ en:
     accepted: 'Flag accepted!'
   api:
     http_error: 'An HTTP error occured. No actions were performed in Cyberville, but points were awarded.'
+  challenge:
+    not_open: 'must be open.'
+    game_not_open: 'The game must be open.'
+    already_solved: 'This player has already solved this challenge.'
