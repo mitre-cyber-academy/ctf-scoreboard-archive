@@ -12,7 +12,7 @@ class GameTest < ActiveSupport::TestCase
       irc: 'game irc'
     )
     assert_not game.valid?
-    assert game.errors.messages[:base].include?(I18n.t('game.too_many'))
+    assert_equal true, game.errors.added?(:base, I18n.t('game.too_many'))
   end
 
   test 'order of start stop date' do
@@ -25,7 +25,7 @@ class GameTest < ActiveSupport::TestCase
       irc: 'game irc'
     )
     assert_not game.valid?
-    assert game.errors.messages[:base].include?(I18n.t('game.date_mismatch'))
+    assert_equal true, game.errors.added?(:base, I18n.t('game.date_mismatch'))
   end
 
   test 'open' do
