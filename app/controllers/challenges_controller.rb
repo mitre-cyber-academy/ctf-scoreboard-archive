@@ -63,8 +63,6 @@ class ChallengesController < ApplicationController
         redirect_to @challenge, notice: I18n.t('flag.accepted')
       else
         redirect_to challenge_url(@challenge, flag: flag_found), notice: I18n.t('flag.accepted')
-        # flash.now[:notice] = I18n.t('teams.full_team') if team_captain? && !team_editable?
-        # redirect_to @team, notice: I18n.t('teams.create_successful')
       end
     else
       redirect_to @challenge, flash: { error: Rails.configuration.wrong_flag_messages.sample }
