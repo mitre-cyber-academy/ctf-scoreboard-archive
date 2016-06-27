@@ -27,3 +27,10 @@ score_adjustment_two:
   point_value: -100
   text: Broke a challenge
   type: ScoreAdjustment
+
+solved_challenge_one:
+  player: player_two
+  challenge: challenge_three
+  flag: flag_three
+  type: SolvedChallenge
+

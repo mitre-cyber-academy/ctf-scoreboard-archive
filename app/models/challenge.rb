@@ -65,7 +65,7 @@ class Challenge < ActiveRecord::Base
   end
 
   def set_state(division, new_state)
-    challenge_state = chalelnge_states.find_by(division: division)
+    challenge_state = challenge_states.find_by(division: division)
     challenge_state.state = new_state
     challenge_state.save
   end
