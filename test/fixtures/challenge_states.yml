@@ -37,3 +37,13 @@ challenge_state_four_d2:
   state: 3
   challenge: challenge_four
   division: division_two
+
+challenge_state_five_d1:
+  state: 1
+  challenge: challenge_five
+  division: division_one
+
+challenge_state_five_d2:
+  state: 1
+  challenge: challenge_five
+  division: divison_two

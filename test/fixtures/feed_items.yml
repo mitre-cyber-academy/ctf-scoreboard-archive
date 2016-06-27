@@ -34,3 +34,8 @@ solved_challenge_one:
   flag: flag_three
   type: SolvedChallenge
 
+solved_challenge_two:
+  player: player_two
+  challenge: challenge_four
+  flag: flag_four
+  type: SolvedChallenge

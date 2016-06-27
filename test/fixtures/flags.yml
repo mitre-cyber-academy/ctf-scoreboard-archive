@@ -15,3 +15,15 @@ flag_three:
   flag: flag three
   api_request: flag_three api request
   video_url: flag_three video url
+
+flag_four:
+  challenge: challenge_four
+  flag: flag four
+  api_request: flag_four api request
+  video_url: flag_four video url
+
+flag_five:
+  challenge: challenge_five
+  flag: flag five
+  api_request: flag_five api request
+  video_url: flag_five video url

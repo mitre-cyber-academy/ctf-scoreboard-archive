@@ -27,3 +27,10 @@ challenge_four:
   starting_state: <%= ChallengeState.states[:open] %>
   category: category_two
   achievement_name: challenge four achievement
+
+challenge_five:
+  name: challenge_five
+  description: challenge five description
+  point_value: 200
+  starting_state: <%= ChallengeState.states[:closed] %>
+  category: category_one
