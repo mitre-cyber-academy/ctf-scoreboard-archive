@@ -1,16 +1,13 @@
 require 'test_helper'
 
 class DivisionTest < ActiveSupport::TestCase
-  test 'ordered players' do
-    division = divisions(:division_one)
-    # checking if the array is empty
-    assert_equal false, division.ordered_players.empty?, 'array is empty'
-    assert_equal 3, division.ordered_players.size
+  test 'all eligible players' do
+    ordered_players = divisions(:division_one).ordered_players
+    assert_equal divisions(:division_one).players.size, ordered_players.size
   end
 
-  test 'add states to challenges' do
-  end
-
-  test 'filter and sort players' do
+  test 'top five eligible players' do
+    ordered_players = divisions(:division_one).ordered_players
+    assert_operator 5, :>=, ordered_players.size
   end
 end
