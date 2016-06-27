@@ -7,7 +7,7 @@ class DivisionTest < ActiveSupport::TestCase
   end
 
   test 'top five eligible players' do
-    ordered_players = divisions(:division_one).ordered_players
+    ordered_players = divisions(:division_one).ordered_players(true)
     assert_operator 5, :>=, ordered_players.size
   end
 end
