@@ -1,16 +1,34 @@
 require 'test_helper'
 
 class GameTest < ActiveSupport::TestCase
+
   test 'instance is singleton' do
+    game = Game.new(
+      name: 'game',
+      start: Time.now,
+      stop: Time.now - 10.hours,
+      description: 'game description',
+      tos: 'game tos',
+      irc: 'game irc'
+    )
+    assert_not game.valid?
+    assert game.errors.messages[:base].include?(I18n.t('game.too_many'))
   end
 
-  test 'order of start and stop date' do
+  test 'order of start stop date' do
+    game = Game.new(
+      name: 'game',
+      start: Time.now,
+      stop: Time.now - 10.hours,
+      description: 'game description',
+      tos: 'game tos',
+      irc: 'game irc'
+    )
+    assert_not game.valid?
+    assert game.errors.messages[:base].include?(I18n.t('game.date_mismatch'))
   end
 
   test 'open' do
-    game = games(:game_one)
-    game_start = game.start
-    game_stop = game.stop
-    assert_equal true, game.open?
+    assert_equal true, games(:game_one).open?
   end
 end
