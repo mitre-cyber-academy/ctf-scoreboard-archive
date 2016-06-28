@@ -12,6 +12,7 @@ class ChallengesController < ApplicationController
                 #{pluralize(@categories.count, 'category')})
   end
 
+  # rubocop:disable Metrics/AbcSize
   def show
     is_admin = current_user.is_a?(Admin)
     # Accept the flag via GET request if the current user is an admin.
@@ -27,6 +28,7 @@ class ChallengesController < ApplicationController
     @submitted_flags = to_timeline @challenge.submitted_flags.group_by { |sf| sf.updated_at.change(sec: 0) }
   end
 
+  # rubocop:disable MethodLength
   def submit_flag
     # get variables
     flag = params[:challenge][:submitted_flag]
@@ -53,6 +55,8 @@ class ChallengesController < ApplicationController
       redirect_to @challenge, flash: { error: Rails.configuration.wrong_flag_messages.sample }
     end
   end
+  # rubocop:enable MethodLength
+  # rubocop:enable Metrics/AbcSize
 
   private
 

@@ -38,6 +38,8 @@ class Division < ActiveRecord::Base
     end
   end
 
+  # rubocop:disable Metrics/AbcSize
+  # rubocop:disable MethodLength
   # Sorts the provided list of players.
   def filter_and_sort_players(filters)
     players.where(filters).sort do |a, b|
@@ -79,4 +81,6 @@ class Division < ActiveRecord::Base
       end
     end
   end
+  # rubocop:enable Metrics/AbcSize
+  # rubocop:enable MethodLength
 end

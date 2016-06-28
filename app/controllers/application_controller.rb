@@ -18,6 +18,10 @@ class ApplicationController < ActionController::Base
     @auto_reload = false
   end
 
+  # rubocop:disable MethodLength
+  # rubocop:disable Metrics/AbcSize
+  # rubocop:disable Metrics/CyclomaticComplexity
+  # rubocop:disable Metrics/PerceivedComplexity
   def load_game
     @game = Game.instance
     raise ActiveRecord::RecordNotFound unless @game
@@ -35,6 +39,10 @@ class ApplicationController < ActionController::Base
       end
     end
   end
+  # rubocop:enable MethodLength
+  # rubocop:enable Metrics/AbcSize
+  # rubocop:enable Metrics/CyclomaticComplexity
+  # rubocop:enable Metrics/PerceivedComplexity
 
   def load_messages_count
     unless current_user.nil?

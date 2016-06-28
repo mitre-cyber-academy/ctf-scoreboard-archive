@@ -8,6 +8,8 @@ class UsersController < ApplicationController
     @subtitle = pluralize(@game.players.count, 'team')
   end
 
+  # rubocop:disable Metrics/AbcSize
+  # rubocop:disable Metrics/MethodLength
   def show
     @player = Player.find(params[:id])
     @players = [@player]
@@ -20,9 +22,12 @@ class UsersController < ApplicationController
     @score = @player.score
     @title = @player.display_name
     # This line is long because we need to NOT create these types of things in the controller.
-    @subtitle = %(#{pluralize(@score, 'point')} and #{pluralize(@achievements.count, 'achievement')} in #{@player.division.name} division)
+    @subtitle = %(#{pluralize(@score, 'point')} and #{pluralize(@achievements.count, 'achievement')}
+                in #{@player.division.name} division)
     render :show
   end
+  # rubocop:enable Metrics/AbcSize
+  # rubocop:enable Metrics/MethodLength
 
   def download
     if File.exist? "/opt/keys/#{current_user.key_file_name}.zip"

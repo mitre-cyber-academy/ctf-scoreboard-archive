@@ -5,6 +5,8 @@ class GamesController < ApplicationController
     redirect_to game_path
   end
 
+  # rubocop:disable MethodLength
+  # rubocop:disable Metrics/AbcSize
   def show
     respond_to do |format|
       format.html do
@@ -42,4 +44,6 @@ class GamesController < ApplicationController
     @signed_in_players = Player.where('current_sign_in_ip is not null')
     @players = Player.all
   end
+  # rubocop:enable MethodLength
+  # rubocop:enable Metrics/AbcSize
 end
