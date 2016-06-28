@@ -1,0 +1,44 @@
+{
+  "ignored_warnings": [
+    {
+      "warning_type": "Unscoped Find",
+      "warning_code": 82,
+      "fingerprint": "0123ccee12a0f682ace6e9cbe8c581141658b928232b6ed5f9067ff2fa2e2d5c",
+      "message": "Unscoped call to Player#find",
+      "file": "app/controllers/users_controller.rb",
+      "line": 12,
+      "link": "http://brakemanscanner.org/docs/warning_types/unscoped_find/",
+      "code": "Player.find(params[:id])",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "UsersController",
+        "method": "show"
+      },
+      "user_input": "params[:id]",
+      "confidence": "Weak",
+      "note": ""
+    },
+    {
+      "warning_type": "Command Injection",
+      "warning_code": 14,
+      "fingerprint": "f28d61ef51eb52749cf454e83fde9975764bb12e5ad0e64c8ef762505ff29796",
+      "message": "Possible command injection",
+      "file": "app/models/player.rb",
+      "line": 43,
+      "link": "http://brakemanscanner.org/docs/warning_types/command_injection/",
+      "code": "system(\"touch /opt/keys/#{key_file_name}\")",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "Player",
+        "method": "touch_file"
+      },
+      "user_input": "key_file_name",
+      "confidence": "Medium",
+      "note": ""
+    }
+  ],
+  "updated": "2016-06-28 13:07:51 -0400",
+  "brakeman_version": "3.3.2"
+}
