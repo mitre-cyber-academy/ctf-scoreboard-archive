@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160624144411) do
+ActiveRecord::Schema.define(version: 20160628171437) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -87,7 +87,6 @@ ActiveRecord::Schema.define(version: 20160624144411) do
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.text     "tos"
     t.string   "irc"
     t.boolean  "disable_vpn",                 default: false
     t.boolean  "disable_flags_an_hour_graph", default: false

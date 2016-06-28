@@ -12,9 +12,6 @@ class GamesControllerTest < ActionController::TestCase
   test 'show' do
   end
 
-  test 'tos' do
-  end
-
   test 'summary' do
   end
 end

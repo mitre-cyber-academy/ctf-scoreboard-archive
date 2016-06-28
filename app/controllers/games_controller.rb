@@ -25,10 +25,6 @@ class GamesController < ApplicationController
     end
   end
 
-  def tos
-    @title = 'Terms of Service'
-  end
-
   def summary
     @title = 'Game Summary'
     @navbar_override = 'summary'

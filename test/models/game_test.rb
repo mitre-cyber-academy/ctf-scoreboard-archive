@@ -8,7 +8,6 @@ class GameTest < ActiveSupport::TestCase
       start: Time.now,
       stop: Time.now - 10.hours,
       description: 'game description',
-      tos: 'game tos',
       irc: 'game irc'
     )
     assert_not game.valid?
@@ -21,7 +20,6 @@ class GameTest < ActiveSupport::TestCase
       start: Time.now,
       stop: Time.now - 10.hours,
       description: 'game description',
-      tos: 'game tos',
       irc: 'game irc'
     )
     assert_not game.valid?

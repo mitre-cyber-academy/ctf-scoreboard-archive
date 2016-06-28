@@ -23,7 +23,6 @@ Scoreboard::Application.routes.draw do
       get 'download'
     end
   end
-  get 'tos' => 'games#tos'
   get 'summary' => 'games#summary'
 
   # root
