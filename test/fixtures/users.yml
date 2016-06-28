@@ -8,7 +8,7 @@ player_one:
 player_two:
   email: playertwo@test.com
   encrypted_password: <%= Devise::Encryptor.digest(User, 'TestPassword123') %>
-  division_id: division_two
+  division: division_two
   display_name: Player Two
   type: Player
 

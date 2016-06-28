@@ -1,29 +1,23 @@
 flag_one:
-  challenge: challenge_one
+  challenge: challenge_one_cat_one
   flag: flag one
-  api_request: flag_one api request
-  video_url: flag_one video url
 
 flag_two:
-  challenge: challenge_two
+  challenge: challenge_two_cat_one
   flag:
-  api_request: flag_two api request
-  video_url: flag_two video url
 
 flag_three:
-  challenge: challenge_three
+  challenge: challenge_three_cat_one
   flag: flag three
-  api_request: flag_three api request
-  video_url: flag_three video url
 
 flag_four:
-  challenge: challenge_four
+  challenge: challenge_four_cat_two
   flag: flag four
-  api_request: flag_four api request
-  video_url: flag_four video url
 
 flag_five:
-  challenge: challenge_five
+  challenge: challenge_five_cat_two
   flag: flag five
-  api_request: flag_five api request
-  video_url: flag_five video url
+
+flag_six:
+  challenge: challenge_six_cat_two
+  flag: flag six

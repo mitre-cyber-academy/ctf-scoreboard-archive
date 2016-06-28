@@ -1,49 +1,59 @@
 challenge_state_one_d1:
-  state: 0
-  challenge: challenge_one
+  state: <%= ChallengeState.states[:open] %>
+  challenge: challenge_one_cat_one
   division: division_one
 
 challenge_state_one_d2:
-  state: 0
-  challenge: challenge_one
+  state: <%= ChallengeState.states[:open] %>
+  challenge: challenge_one_cat_one
   division: division_two
 
 challenge_state_two_d1:
-  state: 2
-  challenge: challenge_two
+  state: <%= ChallengeState.states[:force_closed] %>
+  challenge: challenge_two_cat_one
   division: division_one
 
 challenge_state_two_d2:
-  state: 2
-  challenge: challenge_two
+  state: <%= ChallengeState.states[:force_closed] %>
+  challenge: challenge_two_cat_one
   division: division_two
 
 challenge_state_three_d1:
-  state: 3
-  challenge: challenge_three
+  state: <%= ChallengeState.states[:closed] %>
+  challenge: challenge_three_cat_one
   division: division_one
 
 challenge_state_three_d2:
-  state: 3
-  challenge: challenge_three
+  state: <%= ChallengeState.states[:closed] %>
+  challenge: challenge_three_cat_one
   division: division_two
 
 challenge_state_four_d1:
-  state: 3
-  challenge: challenge_four
+  state: <%= ChallengeState.states[:open] %>
+  challenge: challenge_four_cat_two
   division: division_one
 
 challenge_state_four_d2:
-  state: 3
-  challenge: challenge_four
+  state: <%= ChallengeState.states[:open] %>
+  challenge: challenge_four_cat_two
   division: division_two
 
 challenge_state_five_d1:
-  state: 1
-  challenge: challenge_five
+  state: <%= ChallengeState.states[:closed] %>
+  challenge: challenge_five_cat_two
   division: division_one
 
 challenge_state_five_d2:
-  state: 1
-  challenge: challenge_five
-  division: divison_two
+  state: <%= ChallengeState.states[:closed] %>
+  challenge: challenge_five_cat_two
+  division: division_two
+
+challenge_state_six_d1:
+  state: <%= ChallengeState.states[:closed] %>
+  challenge: challenge_six_cat_two
+  division: division_one
+
+challenge_state_six_d2:
+  state: <%= ChallengeState.states[:closed] %>
+  challenge: challenge_six_cat_two
+  division: division_two

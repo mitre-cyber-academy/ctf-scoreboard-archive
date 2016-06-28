@@ -1,36 +1,44 @@
-challenge_one:
+challenge_one_cat_one:
   name: challenge_one
   description: challenge one description
   point_value: 100
   starting_state: <%= ChallengeState.states[:open] %>
   category: category_one
 
-challenge_two:
+challenge_two_cat_one:
   name: challenge_two
   description: challenge two description
-  point_value: 400
-  starting_state: <%= ChallengeState.states[:closed] %>
+  point_value: 200
+  starting_state: <%= ChallengeState.states[:force_closed] %>
   category: category_one
 
-challenge_three:
+challenge_three_cat_one:
   name: challenge_three
   description: challenge three description
   point_value: 300
+  starting_state: <%= ChallengeState.states[:closed] %>
+  category: category_one
+
+challenge_four_cat_two:
+  name: challenge_four_cat_two
+  description: challenge one description
+  point_value: 200
   category: category_two
   starting_state: <%= ChallengeState.states[:force_closed] %>
   achievement_name: challenge three achievement
 
-challenge_four:
-  name: challenge_four
-  description: challenge four description
-  point_value: 200
+challenge_five_cat_two:
+  name: challenge_five_cat_two
+  description: challenge two description
+  point_value: 300
   starting_state: <%= ChallengeState.states[:open] %>
   category: category_two
   achievement_name: challenge four achievement
 
-challenge_five:
-  name: challenge_five
-  description: challenge five description
-  point_value: 200
-  starting_state: <%= ChallengeState.states[:closed] %>
-  category: category_one
+challenge_six_cat_two:
+  name: challenge_six_cat_two
+  description: challenge two description
+  point_value: 300
+  starting_state: <%= ChallengeState.states[:open] %>
+  category: category_two
+  achievement_name: challenge four achievement
