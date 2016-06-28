@@ -74,7 +74,11 @@ class Challenge < ActiveRecord::Base
 
   # Gets the state using a division context
   def get_state(division)
-    challenge_states.find_by(division: division).state
+    current_state = challenge_states.find_by(division: division)
+    # If we somehow manage to not have a current state for this division then make one with the
+    # default starting state
+    current_state = challenge_states.create!(division: division, state: starting_state) unless current_state
+    current_state.state
   end
 
   def add_states_to_challenges
