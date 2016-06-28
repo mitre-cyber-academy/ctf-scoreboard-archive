@@ -33,29 +33,14 @@ class ChallengesController < ApplicationController
     is_player = current_user.is_a?(Player)
 
     # audit log
-    if is_player
-      SubmittedFlag.create(player: current_user, challenge: @challenge, text: flag)
-    end
+    SubmittedFlag.create(player: current_user, challenge: @challenge, text: flag) if is_player
 
     # handle flag
     flag_found = @challenge.flags.find { |flag_obj| flag_obj.flag.casecmp(flag).zero? }
 
     if flag_found
 
-      # Make API call if one is specified. This throws away any failed requests
-      # since we really don't care that much if the actions really happen. The
-      # player properly being credited their points is more important.
-      @api_url = flag_found.api_request
-      Thread.new do
-        begin
-          Net::HTTP.get(URI.parse(@api_url)) if @api_url
-        # Could list all the execeptions, most advice advocates to move
-        # to a 3rd party HTTP library that has errors derived from a common
-        # superclass
-        rescue StandardError
-          redirect_to @challenge, alert: I18n.t('http_error')
-        end
-      end
+      flag_found.invoke_api_request
 
       if is_player
         SolvedChallenge.create(player: current_user, challenge: @challenge, flag: flag_found,
