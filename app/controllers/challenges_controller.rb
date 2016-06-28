@@ -21,7 +21,7 @@ class ChallengesController < ApplicationController
     # Get video URL for admins
     @solved_video_url = @admin_flag.video_url if @admin_flag
     @solved_by = @challenge.solved_challenges.order(:created_at).reverse_order
-    flash.now[:success] = I18.t('flag.accepted') if @solved || @admin_flag
+    flash.now[:success] = I18n.t('flag.accepted') if @solved || @admin_flag
     @title = @challenge.name
     @subtitle = pluralize(@challenge.point_value, 'point')
     @submitted_flags = to_timeline @challenge.submitted_flags.group_by { |sf| sf.updated_at.change(sec: 0) }
@@ -60,9 +60,9 @@ class ChallengesController < ApplicationController
       if is_player
         SolvedChallenge.create(player: current_user, challenge: @challenge, flag: flag_found,
                                division: current_user.division)
-        redirect_to @challenge, notice: I18n.t('flag.accepted')
+        redirect_to @challenge
       else
-        redirect_to challenge_url(@challenge, flag: flag_found), notice: I18n.t('flag.accepted')
+        redirect_to challenge_url(@challenge, flag: flag_found)
       end
     else
       redirect_to @challenge, flash: { error: Rails.configuration.wrong_flag_messages.sample }
