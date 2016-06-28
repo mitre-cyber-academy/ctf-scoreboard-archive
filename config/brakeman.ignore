@@ -20,6 +20,78 @@
       "note": ""
     },
     {
+      "warning_type": "Cross Site Scripting",
+      "warning_code": 2,
+      "fingerprint": "15d2fa31f6a4a43c789b55fc2adb9322e57323aa9568f3b4cefc5778d58f1105",
+      "message": "Unescaped model attribute",
+      "file": "app/views/challenges/show.html.haml",
+      "line": 8,
+      "link": "http://brakemanscanner.org/docs/warning_types/cross_site_scripting",
+      "code": "BlueCloth.new(Game.instance.challenges.find(params[:id]).description).to_html",
+      "render_path": [{"type":"controller","class":"ChallengesController","method":"show","line":28,"file":"app/controllers/challenges_controller.rb"}],
+      "location": {
+        "type": "template",
+        "template": "challenges/show"
+      },
+      "user_input": "Game.instance.challenges",
+      "confidence": "Weak",
+      "note": ""
+    },
+    {
+      "warning_type": "Cross Site Scripting",
+      "warning_code": 2,
+      "fingerprint": "5799145c15a00f79722836329235f7344887f1499fb311b83005834647f732b8",
+      "message": "Unescaped model attribute",
+      "file": "app/views/layouts/application.html.haml",
+      "line": 29,
+      "link": "http://brakemanscanner.org/docs/warning_types/cross_site_scripting",
+      "code": "Game.instance.challenges.find(params[:id]).name.downcase",
+      "render_path": [{"type":"controller","class":"ChallengesController","method":"show","line":28,"file":"app/controllers/challenges_controller.rb"}],
+      "location": {
+        "type": "template",
+        "template": "layouts/application"
+      },
+      "user_input": null,
+      "confidence": "High",
+      "note": ""
+    },
+    {
+      "warning_type": "Cross Site Scripting",
+      "warning_code": 2,
+      "fingerprint": "60fbf2fb66c271bdb85f4719ba2f59d516b08df9a464e632f9fa82dc645064d0",
+      "message": "Unescaped model attribute",
+      "file": "app/views/games/summary.html.haml",
+      "line": 3,
+      "link": "http://brakemanscanner.org/docs/warning_types/cross_site_scripting",
+      "code": "((Game.instance.stop - Game.instance.start) / 1.hour).round",
+      "render_path": [{"type":"controller","class":"GamesController","method":"summary","line":44,"file":"app/controllers/games_controller.rb"}],
+      "location": {
+        "type": "template",
+        "template": "games/summary"
+      },
+      "user_input": null,
+      "confidence": "Medium",
+      "note": ""
+    },
+    {
+      "warning_type": "Cross Site Scripting",
+      "warning_code": 2,
+      "fingerprint": "6e6f689c09417a3847317ccd7c7fa9ab8b79b602e021eac3bc7c2de7dba2d391",
+      "message": "Unescaped model attribute",
+      "file": "app/views/users/show.html.haml",
+      "line": 42,
+      "link": "http://brakemanscanner.org/docs/warning_types/cross_site_scripting",
+      "code": "Game.instance.irc",
+      "render_path": [{"type":"controller","class":"UsersController","method":"show","line":24,"file":"app/controllers/users_controller.rb"}],
+      "location": {
+        "type": "template",
+        "template": "users/show"
+      },
+      "user_input": null,
+      "confidence": "Medium",
+      "note": ""
+    },
+    {
       "warning_type": "Command Injection",
       "warning_code": 14,
       "fingerprint": "f28d61ef51eb52749cf454e83fde9975764bb12e5ad0e64c8ef762505ff29796",
@@ -39,6 +111,6 @@
       "note": ""
     }
   ],
-  "updated": "2016-06-28 13:07:51 -0400",
+  "updated": "2016-06-28 13:31:26 -0400",
   "brakeman_version": "3.3.2"
 }
