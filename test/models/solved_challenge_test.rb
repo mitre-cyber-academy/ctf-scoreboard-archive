@@ -62,6 +62,13 @@ class SolvedChallengeTest < ActiveSupport::TestCase
     end
   end
 
+  test 'award first blood' do
+    SolvedChallenge.delete_all
+    assert_difference '@solved_challenge_second.player.achievements.count', +1 do
+      @solved_challenge_second.save
+    end
+  end
+
   test 'open next challenge will work when not force closed' do
     @solved_challenge_third.save
     @solved_challenge_third.open_next_challenge
