@@ -1,7 +1,7 @@
 # CTF-Scoreboard
 
-[![Build Status](https://travis-ci.org/mitre-cyber-academy/ctf-scoreboard.svg?branch=add_divisions)](https://travis-ci.org/mitre-cyber-academy/ctf-scoreboard)
-[![Coverage Status](https://coveralls.io/repos/github/mitre-cyber-academy/ctf-scoreboard/badge.svg?branch=add_divisions)](https://coveralls.io/github/mitre-cyber-academy/ctf-scoreboard?branch=add_divisions)
+[![Build Status](https://travis-ci.org/mitre-cyber-academy/ctf-scoreboard.svg?branch=master)](https://travis-ci.org/mitre-cyber-academy/ctf-scoreboard)
+[![Coverage Status](https://coveralls.io/repos/github/mitre-cyber-academy/ctf-scoreboard/badge.svg?branch=master)](https://coveralls.io/github/mitre-cyber-academy/ctf-scoreboard?branch=master)
 
 ### What is this?
 
