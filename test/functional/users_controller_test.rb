@@ -6,9 +6,9 @@ class UsersControllerTest < ActionController::TestCase
   end
 
   test 'index' do
-    sign_in users(:player_one)
+    sign_in users(:player_two)
     get :index
-    assert :success
+    assert_response :success
   end
 
   test 'show' do
