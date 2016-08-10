@@ -3,7 +3,7 @@ Scoreboard::Application.routes.draw do
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
 
   # devise
-  devise_for :users
+  devise_for :users, controllers: { sessions: :sessions }
   devise_scope :user do
     get 'signin', to: 'devise/sessions#new'
     get 'signout', to: 'devise/sessions#destroy'
