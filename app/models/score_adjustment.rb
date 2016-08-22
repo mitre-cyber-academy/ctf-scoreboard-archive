@@ -22,10 +22,10 @@ class ScoreAdjustment < FeedItem
   # rubocop:enable MethodLength
 
   def icon
-    (point_value < 0) ? 'chevron-down' : 'chevron-up'
+    point_value < 0 ? 'chevron-down' : 'chevron-up'
   end
 
   def point_value_is_not_zero
-    errors.add(:point_value, 'must not be zero.') if point_value == 0
+    errors.add(:point_value, 'must not be zero.') if point_value.zero?
   end
 end

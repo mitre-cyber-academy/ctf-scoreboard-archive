@@ -20,7 +20,7 @@ class Division < ActiveRecord::Base
     ineligible_players = filter_and_sort_players(eligible: false)
     # Take the eligible players [in whole competition] and appends
     # the ineligible players to the end of the array of eligible players
-    players.push(*ineligible_players)
+    players.concat(ineligible_players)
     # if true return the first five in array
     if only_top_five
       # Then take the first 5 elements in array

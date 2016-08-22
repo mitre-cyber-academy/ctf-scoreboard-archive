@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
 
   # validators
   validates :email, :type, presence: true
-  validates :type, inclusion: %w( Admin Player )
+  validates :type, inclusion: %w(Admin Player)
 
   # is admin
   def admin?

@@ -82,9 +82,6 @@ RailsAdmin.config do |config|
     end
     edit do
       fields :name, :start, :stop, :irc
-      field :tos do
-        label 'Terms of Service'
-      end
       field :disable_vpn do
         label 'Hide VPN Cert Download'
       end
