@@ -5,6 +5,8 @@ Scoreboard::Application.configure do
   # Code is not reloaded between requests
   config.cache_classes = true
 
+  config.jumpbox = { ip: ENV['OPENVPN_JUMPBOX_IP'] }
+
   # Full error reports are disabled and caching is turned on
   config.consider_all_requests_local       = false
   config.action_controller.perform_caching = true
