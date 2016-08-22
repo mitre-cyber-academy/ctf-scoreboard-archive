@@ -121,6 +121,9 @@ GEM
     orm_adapter (0.5.0)
     parser (2.3.1.2)
       ast (~> 2.2)
+    passenger (5.0.30)
+      rack
+      rake (>= 0.8.1)
     pg (0.18.4)
     pkg-config (1.1.7)
     powerpack (0.1.1)
@@ -254,6 +257,7 @@ DEPENDENCIES
   jbuilder
   jquery-rails
   kaminari
+  passenger
   pg
   rails (~> 4.2.6)
   rails_admin

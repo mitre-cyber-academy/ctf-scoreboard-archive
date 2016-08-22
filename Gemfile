@@ -33,4 +33,5 @@ group :assets do
 end
 
 group :production do
+  gem 'passenger'
 end
