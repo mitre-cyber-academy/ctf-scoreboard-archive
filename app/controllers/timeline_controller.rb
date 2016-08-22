@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class TimelineController < ApplicationController
   def index
     # Grab a set of flags submitted and group them by minutes

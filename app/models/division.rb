@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class Division < ActiveRecord::Base
   after_create :add_states_to_challenges
 

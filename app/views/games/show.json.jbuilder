@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 json.array!(@game.players) do |json, player|
   json.name player.name
   json.tags player.tags

@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 Scoreboard::Application.routes.draw do
   # admin
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'

@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class SolvedChallenge < FeedItem
   validates :challenge_id, :flag, :division_id, :player, presence: true
   validate :user_has_not_solved_challenge, :challenge_is_open, :game_is_open
@@ -24,7 +25,7 @@ class SolvedChallenge < FeedItem
   end
 
   def user_has_not_solved_challenge
-    if player.solved_challenges.where('challenge_id = ?', challenge.id).count > 0
+    if player.solved_challenges.where('challenge_id = ?', challenge.id).count.positive?
       errors.add(:base, I18n.t('challenge.already_solved'))
     end
   end

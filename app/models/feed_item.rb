@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class FeedItem < ActiveRecord::Base
   belongs_to :player, foreign_key: :user_id
   belongs_to :challenge

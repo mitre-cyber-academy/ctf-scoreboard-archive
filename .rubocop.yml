@@ -7,7 +7,6 @@ AllCops:
     - 'log/**/*'
     - 'test/**/*'
     - 'vendor/**/*'
-  TargetRubyVersion: 2.2
 Rails:
   Enabled: true
 

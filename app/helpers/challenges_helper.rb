@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module ChallengesHelper
   def embed(youtube_url)
     youtube_id = youtube_url.split('v=').last

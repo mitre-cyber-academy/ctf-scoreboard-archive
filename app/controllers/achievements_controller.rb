@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class AchievementsController < ApplicationController
   def index
     @achievements = @game.achievements.order(:text)

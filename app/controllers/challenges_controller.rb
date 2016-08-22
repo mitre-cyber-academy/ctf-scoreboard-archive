@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class ChallengesController < ApplicationController
   before_action :enforce_access
   before_action :find_challenge, except: :index

@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class Challenge < ActiveRecord::Base
   after_create :add_states_to_challenges
 
@@ -32,7 +33,7 @@ class Challenge < ActiveRecord::Base
   end
 
   def solved?
-    (SolvedChallenge.where('challenge_id = :challenge', challenge: self).count > 0)
+    SolvedChallenge.where('challenge_id = :challenge', challenge: self).count.positive?
   end
 
   # Returns whether or not challenge is available to be opened.

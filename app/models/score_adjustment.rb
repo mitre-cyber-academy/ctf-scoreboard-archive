@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class ScoreAdjustment < FeedItem
   include ActionView::Helpers::TextHelper
 
@@ -10,7 +11,7 @@ class ScoreAdjustment < FeedItem
     color = ''
     verb = ''
     points = point_value
-    if points < 0
+    if points.negative?
       color = 'red'
       verb = 'decreased'
     else
@@ -22,7 +23,7 @@ class ScoreAdjustment < FeedItem
   # rubocop:enable MethodLength
 
   def icon
-    point_value < 0 ? 'chevron-down' : 'chevron-up'
+    point_value.negative? ? 'chevron-down' : 'chevron-up'
   end
 
   def point_value_is_not_zero

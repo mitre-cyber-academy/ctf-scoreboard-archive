@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class ChallengeState < ActiveRecord::Base
   before_validation :default_values
   belongs_to :challenge

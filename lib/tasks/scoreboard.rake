@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 namespace :scoreboard do
   namespace :user do
     desc 'Add a user to the Game'
