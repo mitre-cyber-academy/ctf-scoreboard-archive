@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+ruby '2.3.1'
+
 gem 'rails', '~> 4.2.6'
 gem 'bluecloth'
 gem 'aws-sdk', '<2.0'
