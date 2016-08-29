@@ -60,7 +60,7 @@ RailsAdmin.config do |config|
       field :division
     end
     create do
-      field :set_password do
+      field :change_password do
         label 'Password'
         required :true
       end
