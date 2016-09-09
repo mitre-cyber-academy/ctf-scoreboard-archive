@@ -75,7 +75,7 @@ namespace :scoreboard do
   namespace :certificates do
     desc 'Sync user certificates between scoreboard and VPN box'
     task copy: [:environment] do
-      system "/usr/bin/unison -auto -batch -ignorearchives /opt/keys "\
+      system '/usr/bin/unison -auto -batch -ignorearchives /opt/keys '\
       "ssh://#{Rails.configuration.jumpbox[:ip]}//opt/openvpn_keys"
     end
   end
