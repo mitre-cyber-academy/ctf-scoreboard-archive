@@ -4,7 +4,7 @@ class Division < ActiveRecord::Base
 
   belongs_to :game
 
-  has_many :players
+  has_many :players, dependent: :destroy
 
   has_many :challenge_states, dependent: :destroy
 
