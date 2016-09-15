@@ -16,14 +16,11 @@ class Player < User
   after_create :touch_file
 
   def score
-    points = 0
-    solved_challenges.includes(:challenge).each do |s|
-      points += s.challenge.point_value
-    end
-    score_adjustments.each do |a|
-      points += a.point_value
-    end
-    points
+    feed_items.where(type: [SolvedChallenge, ScoreAdjustment])
+              .joins(
+                'LEFT JOIN challenges ON challenges.id = feed_items.challenge_id'
+              )
+              .pluck(:point_value, :'challenges.point_value').flatten.compact.sum
   end
 
   def display_name
