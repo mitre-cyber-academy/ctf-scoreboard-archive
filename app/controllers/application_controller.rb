@@ -51,9 +51,9 @@ class ApplicationController < ActionController::Base
     unless current_user.nil?
       time = current_user.messages_stamp
       @messages_count = if time.nil?
-                          @game.messages.count
+                          @game.messages.size
                         else
-                          @game.messages.where('updated_at >= :time', time: time.utc).count
+                          @game.messages.where('updated_at >= :time', time: time.utc).size
                         end
     end
   end

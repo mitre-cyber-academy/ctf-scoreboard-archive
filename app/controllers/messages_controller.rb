@@ -5,6 +5,6 @@ class MessagesController < ApplicationController
     @messages_count = 0
     current_user.update_attribute(:messages_stamp, Time.now.utc)
     @title = 'Messages'
-    @subtitle = pluralize(@messages.count, 'message')
+    @subtitle = pluralize(@messages.size, 'message')
   end
 end

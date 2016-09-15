@@ -6,13 +6,13 @@
 	window.highlightOnMap = (mapSelector, elementSelector) ->
 		d3.selectAll(elementSelector)
 			.transition()
-			.attr("class", "highlighted")		
+			.attr("class", "highlighted")
 
 	window.unhighlightOnMap = (mapSelector, elementSelector) ->
 		d3.selectAll(elementSelector)
 			.transition()
 			.delay(250)
-			.attr("class", "team_location " + d3.selectAll(elementSelector).attr("tags"))	
+			.attr("class", "team_location " + d3.selectAll(elementSelector).attr("tags"))
 %h3{:class=>"muted"}
 	Top 5 Teams
 %br/
@@ -84,12 +84,12 @@
 		%h3{:class=>"h4 muted"}
 			Currently Logged In Users:
 			%span{:class=>"lead"}
-				= @signed_in_players.count
+				= @signed_in_players.size
 		- @players.each do |p|
 			%div{style:"padding-left:15px;padding-top:10px;"}
 				%span{onmouseover:"Javascript:highlightOnMap('#map','##{p.email}')",onmouseout:"Javascript:unhighlightOnMap('#map','##{p.email}')"}
 					%strong{class: "text-info"}
-					
+
 						= p.email
 					- if p.current_sign_in_ip.nil?
 						are not currently playing.

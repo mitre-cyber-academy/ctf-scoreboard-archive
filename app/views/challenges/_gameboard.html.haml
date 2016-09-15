@@ -1,4 +1,4 @@
-- if challenges.count == 0
+- if challenges.size == 0
   .zero-items-text No Challenges
 - else
   - max = 0
@@ -6,15 +6,15 @@
     %thead
       %tr
         - categories.each do |c|
-          %th{ :style => "text-align:center;width:#{1.0 / @categories.count.to_f * 100.0}%;" }= c.name
-          - max = [max, c.challenges.count].max
+          %th{ :style => "text-align:center;width:#{1.0 / @categories.size.to_f * 100.0}%;" }= c.name
+          - max = [max, c.challenges.size].max
     %tbody
       - is_admin = current_user.admin?
       - max.times do |row|
         %tr
-          - categories.count.times do |column|
+          - categories.size.times do |column|
             - challenges = categories[column].challenges
-            - if row < challenges.count
+            - if row < challenges.size
               - challenge = challenges[row]
               - is_solved = false
               - style = "text-align:center;"

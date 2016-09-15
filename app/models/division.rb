@@ -39,49 +39,26 @@ class Division < ActiveRecord::Base
     end
   end
 
-  # rubocop:disable Metrics/AbcSize
   # rubocop:disable MethodLength
-  # Sorts the provided list of players.
+  # Sorts the provided list of players. This sorts directly in the database instead of getting the
+  # data out of the database and sorting in rails. It gets all feed items of type ScoreAdjustment
+  # and SolvedChallenge and sums up their values or the value of the challenge in the case of a
+  # SolvedChallenge.
   def filter_and_sort_players(filters)
-    players.where(filters).sort do |a, b|
-      #
-      # get scores
-      #
-      a_score = a.score
-      b_score = b.score
-
-      #
-      # if the scores are the same sort based on the first
-      # team to get to the current score
-      #
-      if a_score == b_score
-
-        #
-        # get solved challenges
-        #
-        future_date = Time.zone.now + 100.years
-        a_most_recent = a.solved_challenges.order(:created_at).last
-        a_date = a_most_recent ? a_most_recent.created_at : future_date
-        b_most_recent = b.solved_challenges.order(:created_at).last
-        b_date = b_most_recent ? b_most_recent.created_at : future_date
-
-        #
-        # if both teams have solved challenges
-        #
-        if a_date == b_date
-          a.display_name <=> b.display_name
-        else
-          a_date <=> b_date
-        end
-
-      #
-      # sort based on score
-      #
-      else
-        b_score <=> a_score
-      end
-    end
+    players.includes(:achievements).where(filters)
+           .joins(
+             "LEFT JOIN feed_items
+               ON feed_items.user_id = users.id
+               AND feed_items.type IN ('SolvedChallenge', 'ScoreAdjustment')
+             LEFT JOIN challenges ON challenges.id = feed_items.challenge_id"
+           )
+           .group('users.id')
+           .select(
+             'COALESCE(sum(challenges.point_value), 0) + COALESCE(sum(feed_items.point_value), 0)
+               as current_score,
+             MAX(feed_items.created_at) as last_solved_date, users.*'
+           )
+           .order('current_score desc', 'last_solved_date asc', 'display_name asc')
   end
-  # rubocop:enable Metrics/AbcSize
   # rubocop:enable MethodLength
 end

@@ -6,7 +6,7 @@ class UsersController < ApplicationController
     @divisions = @game.divisions
     @active_division = current_user && !current_user.admin? ? current_user.division : @divisions.first
     @title = 'Teams'
-    @subtitle = pluralize(@game.players.count, 'team')
+    @subtitle = pluralize(@game.players.size, 'team')
   end
 
   # rubocop:disable Metrics/AbcSize
@@ -23,7 +23,7 @@ class UsersController < ApplicationController
     @score = @player.score
     @title = @player.display_name
     # This line is long because we need to NOT create these types of things in the controller.
-    @subtitle = %(#{pluralize(@score, 'point')} and #{pluralize(@achievements.count, 'achievement')}
+    @subtitle = %(#{pluralize(@score, 'point')} and #{pluralize(@achievements.size, 'achievement')}
                 in #{@player.division.name} division)
     render :show
   end

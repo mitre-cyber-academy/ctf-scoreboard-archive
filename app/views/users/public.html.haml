@@ -3,17 +3,17 @@
 		%h3.muted Flags/Min:
 		= render partial: "events/timeline", locals: {id: "timeline", data: @submitted_flags}
 	%div.span5.offset1
-		%h3.muted 
+		%h3.muted
 			Affiliation:
-			%small 
+			%small
 				-if not @player.affiliation == ''
-					= @player.affiliation  
+					= @player.affiliation
 				-else
 					Unknown
-					
+
 %div.row
 	%div.span5
-		- if @solved_challenges.count == 0
+		- if @solved_challenges.size == 0
 			.zero-items-text No Solved Challenges
 		- else
 			%table.table.table-bordered.table-striped
@@ -31,6 +31,6 @@
 							%td= s.challenge.point_value
 							%td= s.created_at.strftime("%b %e %y, %R %Z")
 
-	
+
 	%div.span5.offset1
 		= render partial: "users/map", locals: {data: @players}

@@ -9,8 +9,8 @@ class ChallengesController < ApplicationController
     # Only exists for the purpose of providing an active tab for admins.
     @active_division = @divisions.first
     @title = 'Challenges'
-    @subtitle = %(#{pluralize(@challenges.count, 'challenge')} in
-                #{pluralize(@categories.count, 'category')})
+    @subtitle = %(#{pluralize(@challenges.size, 'challenge')} in
+                #{pluralize(@categories.size, 'category')})
   end
 
   # rubocop:disable Metrics/AbcSize
