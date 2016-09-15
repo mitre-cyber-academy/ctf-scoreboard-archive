@@ -3,16 +3,16 @@
     %h3.muted Flags/Min:
     = render partial: "events/timeline", locals: {id: "timeline", data: @submitted_flags}
   %div.span5.offset1
-    %h3.muted 
+    %h3.muted
       -if current_user == @player and not @game.disable_vpn
         Connection Information
-      -else 
+      -else
         Affiliation:
-        %small 
+        %small
           =@player.affiliation
 %div.row
   %div.span5
-    - if @solved_challenges.count == 0
+    - if @solved_challenges.size == 0
       .zero-items-text No Solved Challenges
     - else
       %table.table.table-bordered.table-striped
@@ -30,10 +30,10 @@
               %td= s.challenge.point_value
               %td= s.created_at.strftime("%b %e %y, %R %Z")
 
-  
+
   -if(current_user == @player and not @game.disable_vpn)
     %div.span5.offset1
-      :markdown 
+      :markdown
         To connect to the jumpbox from Kali download your key using the link below. Unzip the folder, open a terminal in that folder and run
 
         `openvpn (ovpn file)`
@@ -43,7 +43,7 @@
   -else
     %div.span5.offset1
       = render partial: "users/map", locals: {data: @players}
-  
+
 
 - if (not current_user.nil? and current_user.admin?) || current_user == @player and not @game.disable_vpn
   %h3 VPN Cert
@@ -56,7 +56,7 @@
 
 %h3 Achievements
 
-- if @achievements.count == 0
+- if @achievements.size == 0
   .zero-items-text No Achievements
 - else
   %table.table.table-bordered.table-striped
@@ -72,7 +72,7 @@
 
 - unless current_user.nil?
   %h3 Score Adjustments
-  - if @adjustments.count == 0
+  - if @adjustments.size == 0
     .zero-items-text No Adjustments
   - else
     %table.table.table-bordered.table-striped

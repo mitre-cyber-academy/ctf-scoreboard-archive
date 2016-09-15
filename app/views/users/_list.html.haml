@@ -23,7 +23,7 @@
           %td= i + 1
           %td{:class => "#{p.tags}"}
             = link_to p.display_name, p
-          %td= p.achievements.count
+          %td= p.achievements.size
           %td= score
           %td
             .progress{ :style => "margin:0;" }

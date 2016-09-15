@@ -18,8 +18,8 @@ class GamesController < ApplicationController
         @events = @game.feed_items.order(:created_at).reverse_order.page(params[:page]).per(25)
         @title = @game.name
         @html_title = @title
-        @subtitle = %(#{pluralize(@game.players.count, 'team')} and
-        #{pluralize(@game.challenges.count, 'challenge')})
+        @subtitle = %(#{pluralize(@game.players.size, 'team')} and
+        #{pluralize(@game.challenges.size, 'challenge')})
         @submitted_flags = to_timeline(SubmittedFlag.all.group_by do |sf|
           sf.updated_at.change(sec: 0)
         end)
