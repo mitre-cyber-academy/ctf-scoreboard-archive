@@ -15,7 +15,12 @@ class GamesController < ApplicationController
         @divisions = @game.divisions
         signed_in_not_admin = current_user && !current_user.admin?
         @active_division = signed_in_not_admin ? current_user.division : @divisions.first
-        @events = @game.feed_items.order(:created_at).reverse_order.page(params[:page]).per(25)
+        @events = @game.feed_items
+                       .includes(player: :division)
+                       .includes(challenge: :category)
+                       .order(:created_at)
+                       .reverse_order
+                       .page(params[:page]).per(25)
         @title = @game.name
         @html_title = @title
         @subtitle = %(#{pluralize(@game.players.size, 'team')} and
