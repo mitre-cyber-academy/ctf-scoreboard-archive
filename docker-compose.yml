@@ -2,12 +2,12 @@ version: '2'
 services:
   db:
     image: postgres
+    volumes:
+      - /ctf-db
   web:
     image: mitrectf/ctf-scoreboard
     env_file: ./.env_vars
     ports:
       - "3000:3000"
-    volumes:
-      - /ctf-db
     depends_on:
       - db
