@@ -18,6 +18,16 @@ This repository is for the scoreboard used to run MITRE capture the flag competi
 8. Run 'bundle exec rake db:create'
 9. Run 'bundle exec rake db:schema:load'
 
+### How to Run with Docker
+
+1. Install docker and docker-compose for your platform
+2. Clone this project to your local system
+3. Create a .env_vars file in the root containing the contents `SECRET_KEY_BASE=<put your secret key here!>`
+4. From this directory on your system run `docker-compose up -d`
+5. Run `docker-compose run web rake db:schema:load`
+6. Run `docker-compose run web rake db:seed`
+7. Login to the scoreboard as email: `root`, password: `ChangePa$$w0rd` and change the password.
+
 
 ### How do I contribute?
 
