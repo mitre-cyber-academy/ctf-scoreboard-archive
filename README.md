@@ -27,7 +27,8 @@ This repository is for the scoreboard used to run MITRE capture the flag competi
 5. Run `docker-compose run web rake db:create`
 6. Run `docker-compose run web rake db:schema:load`
 7. Run `docker-compose run web rake db:seed`
-8. Login to the scoreboard as email: `root`, password: `ChangePa$$w0rd` and change the password.
+8. The scoreboard should now be running at `http://<your-ip>:3000`
+9. Login to the scoreboard as email: `root`, password: `ChangePa$$w0rd` and change the password.
 
 
 ### How do I contribute?
