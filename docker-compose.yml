@@ -1,9 +1,12 @@
 version: '2'
+volumes:
+  scoreboard-db:
+    driver: local
 services:
   db:
     image: postgres
     volumes:
-      - /ctf-db
+      - scoreboard-db:/var/lib/postgresql/data
   web:
     image: mitrectf/ctf-scoreboard
     env_file: ./.env_vars
