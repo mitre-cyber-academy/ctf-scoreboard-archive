@@ -18,6 +18,7 @@ This repository is for the scoreboard used to run MITRE capture the flag competi
 6. Run `bundle exec rake db:seed`
 7. Run `bundle exec rails s`
 8. Open the webpage shown in your terminal from the last command in your browser.
+9. Login to the scoreboard as email: `root`, password: `ChangePa$$w0rd` and change the password.
 
 ### How to Run with Docker
 
