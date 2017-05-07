@@ -5,7 +5,7 @@
 
 ### What is this?
 
-This repository is for the scoreboard used to run MITRE capture the flag competitions.
+This repository is for the scoreboard used to run MITRE capture the flag competitions. For the registratration app see [this repository](https://github.com/mitre-cyber-academy/registration-app).
 
 ### How to Run Locally
 
