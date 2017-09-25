@@ -1,3 +1,7 @@
+# This Scoreboard is Deprecated
+
+This scoreboard is no longer maintained and any Pull Requests will be ignored. Please checkout [ctf-scoreboard](http://github.com/mitre-cyber-academy/ctf-scoreboard) for our maintained version of this scoreboard.
+
 # CTF-Scoreboard
 
 [![Build Status](https://travis-ci.org/mitre-cyber-academy/ctf-scoreboard.svg?branch=master)](https://travis-ci.org/mitre-cyber-academy/ctf-scoreboard)
